@@ -28,7 +28,7 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.userName.text = self.user!.username;
+        //self.userName.text = self.user!.username;
     }
     
     @IBAction func onConfirm(_ sender: AnyObject) {

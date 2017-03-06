@@ -28,13 +28,14 @@ extension SignInViewController {
     func handleUserPoolSignUp () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SignUp")
-            self.navigationController?.pushViewController(viewController, animated:true);
+        //self.navigationController?.pushViewController(viewController, animated:true); *original AWS method of doing this
+        self.present(viewController, animated: true)A1
     }
     
     func handleUserPoolForgotPassword () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword")
-            self.navigationController?.pushViewController(viewController, animated:true);
+        self.navigationController?.pushViewController(viewController, animated:true);
     }
 }
 

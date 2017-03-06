@@ -24,6 +24,7 @@ class UserPoolSignUpViewController: UIViewController {
     
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var retypePassword: UITextField!
     
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
