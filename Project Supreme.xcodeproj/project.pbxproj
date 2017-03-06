@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
+		E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */; };
+		E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9011E6DE2C300CF56FD /* Main.storyboard */; };
+		E8EFB9051E6DE2C300CF56FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9041E6DE2C300CF56FD /* Assets.xcassets */; };
+		E8EFB9081E6DE2C300CF56FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9061E6DE2C300CF56FD /* LaunchScreen.storyboard */; };
+		E8EFB9101E6DE37700CF56FD /* Sdk in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB90F1E6DE37700CF56FD /* Sdk */; };
+		E8EFB9161E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9111E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework */; };
+		E8EFB9171E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9111E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB9181E6DE3C900CF56FD /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9121E6DE3C900CF56FD /* AWSCore.framework */; };
+		E8EFB9191E6DE3C900CF56FD /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9121E6DE3C900CF56FD /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB91A1E6DE3C900CF56FD /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9131E6DE3C900CF56FD /* AWSDynamoDB.framework */; };
+		E8EFB91B1E6DE3C900CF56FD /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9131E6DE3C900CF56FD /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB91C1E6DE3C900CF56FD /* AWSPinpoint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9141E6DE3C900CF56FD /* AWSPinpoint.framework */; };
+		E8EFB91D1E6DE3C900CF56FD /* AWSPinpoint.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9141E6DE3C900CF56FD /* AWSPinpoint.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB91E1E6DE3C900CF56FD /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9151E6DE3C900CF56FD /* AWSS3.framework */; };
+		E8EFB91F1E6DE3C900CF56FD /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9151E6DE3C900CF56FD /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB9221E6DE3DE00CF56FD /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9211E6DE3DE00CF56FD /* AWSCognito.framework */; };
+		E8EFB9231E6DE3DE00CF56FD /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9211E6DE3DE00CF56FD /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8EFB92C1E6DE45700CF56FD /* AWSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9261E6DE45700CF56FD /* AWSConfiguration.swift */; };
+		E8EFB92D1E6DE45700CF56FD /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9271E6DE45700CF56FD /* AWSMobileClient.swift */; };
+		E8EFB92E1E6DE45700CF56FD /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9281E6DE45700CF56FD /* AWSMobileHubHelper.framework */; };
+		E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB92B1E6DE45700CF56FD /* Events.swift */; };
+		E8EFB9321E6DE52100CF56FD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9311E6DE52100CF56FD /* libsqlite3.tbd */; };
+		E8EFB9341E6DE53000CF56FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9331E6DE53000CF56FD /* libz.tbd */; };
+		E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */; };
+		E8EFB93F1E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */; };
+		E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */; };
+		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
+		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
+		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8EFB9201E6DE3C900CF56FD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E8EFB9231E6DE3DE00CF56FD /* AWSCognito.framework in Embed Frameworks */,
+				E8EFB9171E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				E8EFB91D1E6DE3C900CF56FD /* AWSPinpoint.framework in Embed Frameworks */,
+				E8EFB91B1E6DE3C900CF56FD /* AWSDynamoDB.framework in Embed Frameworks */,
+				E8EFB9191E6DE3C900CF56FD /* AWSCore.framework in Embed Frameworks */,
+				E8EFB91F1E6DE3C900CF56FD /* AWSS3.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		E8EFB9021E6DE2C300CF56FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8EFB9041E6DE2C300CF56FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8EFB9071E6DE2C300CF56FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E8EFB9091E6DE2C300CF56FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8EFB90F1E6DE37700CF56FD /* Sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sdk; sourceTree = "<group>"; };
+		E8EFB9111E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Sdk/Aws/AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
+		E8EFB9121E6DE3C900CF56FD /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Sdk/Aws/AWSCore.framework; sourceTree = "<group>"; };
+		E8EFB9131E6DE3C900CF56FD /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = Sdk/Aws/AWSDynamoDB.framework; sourceTree = "<group>"; };
+		E8EFB9141E6DE3C900CF56FD /* AWSPinpoint.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSPinpoint.framework; path = Sdk/Aws/AWSPinpoint.framework; sourceTree = "<group>"; };
+		E8EFB9151E6DE3C900CF56FD /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
+		E8EFB9211E6DE3DE00CF56FD /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = Sdk/Aws/extras/AWSCognito.framework; sourceTree = "<group>"; };
+		E8EFB9261E6DE45700CF56FD /* AWSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSConfiguration.swift; sourceTree = "<group>"; };
+		E8EFB9271E6DE45700CF56FD /* AWSMobileClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSMobileClient.swift; sourceTree = "<group>"; };
+		E8EFB9281E6DE45700CF56FD /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		E8EFB92B1E6DE45700CF56FD /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		E8EFB9311E6DE52100CF56FD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E8EFB9331E6DE53000CF56FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewControllerExtensions.swift; sourceTree = "<group>"; };
+		E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolMFAViewController.swift; sourceTree = "<group>"; };
+		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
+		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
+		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8EFB8F71E6DE2C200CF56FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EFB9341E6DE53000CF56FD /* libz.tbd in Frameworks */,
+				E8EFB9321E6DE52100CF56FD /* libsqlite3.tbd in Frameworks */,
+				E8EFB9221E6DE3DE00CF56FD /* AWSCognito.framework in Frameworks */,
+				E8EFB9161E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				E8EFB91C1E6DE3C900CF56FD /* AWSPinpoint.framework in Frameworks */,
+				E8EFB91A1E6DE3C900CF56FD /* AWSDynamoDB.framework in Frameworks */,
+				E8EFB9181E6DE3C900CF56FD /* AWSCore.framework in Frameworks */,
+				E8EFB92E1E6DE45700CF56FD /* AWSMobileHubHelper.framework in Frameworks */,
+				E8EFB91E1E6DE3C900CF56FD /* AWSS3.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8EFB8F11E6DE2C200CF56FD = {
+			isa = PBXGroup;
+			children = (
+				E8EFB8FC1E6DE2C300CF56FD /* Project Supreme */,
+				E8EFB90F1E6DE37700CF56FD /* Sdk */,
+				E8EFB9251E6DE45700CF56FD /* AmazonAws */,
+				E8EFB8FB1E6DE2C300CF56FD /* Products */,
+				E8EFB9301E6DE52100CF56FD /* Frameworks */,
+				E8EFB9211E6DE3DE00CF56FD /* AWSCognito.framework */,
+				E8EFB9111E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework */,
+				E8EFB9121E6DE3C900CF56FD /* AWSCore.framework */,
+				E8EFB9131E6DE3C900CF56FD /* AWSDynamoDB.framework */,
+				E8EFB9141E6DE3C900CF56FD /* AWSPinpoint.framework */,
+				E8EFB9151E6DE3C900CF56FD /* AWSS3.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		E8EFB8FB1E6DE2C300CF56FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8EFB8FC1E6DE2C300CF56FD /* Project Supreme */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB9351E6DE64E00CF56FD /* SignIn */,
+				E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */,
+				E8EFB9011E6DE2C300CF56FD /* Main.storyboard */,
+				E8EFB9041E6DE2C300CF56FD /* Assets.xcassets */,
+				E8EFB9061E6DE2C300CF56FD /* LaunchScreen.storyboard */,
+				E8EFB9091E6DE2C300CF56FD /* Info.plist */,
+			);
+			path = "Project Supreme";
+			sourceTree = "<group>";
+		};
+		E8EFB9251E6DE45700CF56FD /* AmazonAws */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB9261E6DE45700CF56FD /* AWSConfiguration.swift */,
+				E8EFB9271E6DE45700CF56FD /* AWSMobileClient.swift */,
+				E8EFB9281E6DE45700CF56FD /* AWSMobileHubHelper.framework */,
+				E8EFB9291E6DE45700CF56FD /* Models */,
+			);
+			path = AmazonAws;
+			sourceTree = "<group>";
+		};
+		E8EFB9291E6DE45700CF56FD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB92A1E6DE45700CF56FD /* NoSQL */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E8EFB92A1E6DE45700CF56FD /* NoSQL */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB92B1E6DE45700CF56FD /* Events.swift */,
+			);
+			path = NoSQL;
+			sourceTree = "<group>";
+		};
+		E8EFB9301E6DE52100CF56FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB9331E6DE53000CF56FD /* libz.tbd */,
+				E8EFB9311E6DE52100CF56FD /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8EFB9351E6DE64E00CF56FD /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */,
+				E8EFB9361E6DE6E300CF56FD /* UserPools */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		E8EFB9361E6DE6E300CF56FD /* UserPools */ = {
+			isa = PBXGroup;
+			children = (
+				E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */,
+				E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */,
+				E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */,
+				E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */,
+				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
+				E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */,
+			);
+			path = UserPools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8EFB8F91E6DE2C200CF56FD /* Project Supreme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8EFB90C1E6DE2C300CF56FD /* Build configuration list for PBXNativeTarget "Project Supreme" */;
+			buildPhases = (
+				E8EFB8F61E6DE2C200CF56FD /* Sources */,
+				E8EFB8F71E6DE2C200CF56FD /* Frameworks */,
+				E8EFB8F81E6DE2C200CF56FD /* Resources */,
+				E8EFB9201E6DE3C900CF56FD /* Embed Frameworks */,
+				E8EFB9241E6DE3F400CF56FD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Project Supreme";
+			productName = "Project Supreme";
+			productReference = E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8EFB8F21E6DE2C200CF56FD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Supreme Apps";
+				TargetAttributes = {
+					E8EFB8F91E6DE2C200CF56FD = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = MDQ38Q5ME9;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E8EFB8F51E6DE2C200CF56FD /* Build configuration list for PBXProject "Project Supreme" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E8EFB8F11E6DE2C200CF56FD;
+			productRefGroup = E8EFB8FB1E6DE2C300CF56FD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8EFB8F91E6DE2C200CF56FD /* Project Supreme */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8EFB8F81E6DE2C200CF56FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EFB9081E6DE2C300CF56FD /* LaunchScreen.storyboard in Resources */,
+				E8EFB9101E6DE37700CF56FD /* Sdk in Resources */,
+				E8EFB9051E6DE2C300CF56FD /* Assets.xcassets in Resources */,
+				E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E8EFB9241E6DE3F400CF56FD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8EFB8F61E6DE2C200CF56FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */,
+				E8EFB92C1E6DE45700CF56FD /* AWSConfiguration.swift in Sources */,
+				E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */,
+				E8EFB92D1E6DE45700CF56FD /* AWSMobileClient.swift in Sources */,
+				E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */,
+				E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */,
+				E8EFB93F1E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift in Sources */,
+				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
+				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
+				E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */,
+				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E8EFB9011E6DE2C300CF56FD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8EFB9021E6DE2C300CF56FD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E8EFB9061E6DE2C300CF56FD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8EFB9071E6DE2C300CF56FD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E8EFB90A1E6DE2C300CF56FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E8EFB90B1E6DE2C300CF56FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8EFB90D1E6DE2C300CF56FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MDQ38Q5ME9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sdk/Aws",
+					"$(PROJECT_DIR)/Sdk/Aws/extras",
+					"$(PROJECT_DIR)/AmazonAws",
+				);
+				INFOPLIST_FILE = "Project Supreme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.supremeapps.Project-Supreme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E8EFB90E1E6DE2C300CF56FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MDQ38Q5ME9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sdk/Aws",
+					"$(PROJECT_DIR)/Sdk/Aws/extras",
+					"$(PROJECT_DIR)/AmazonAws",
+				);
+				INFOPLIST_FILE = "Project Supreme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.supremeapps.Project-Supreme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8EFB8F51E6DE2C200CF56FD /* Build configuration list for PBXProject "Project Supreme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8EFB90A1E6DE2C300CF56FD /* Debug */,
+				E8EFB90B1E6DE2C300CF56FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8EFB90C1E6DE2C300CF56FD /* Build configuration list for PBXNativeTarget "Project Supreme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8EFB90D1E6DE2C300CF56FD /* Debug */,
+				E8EFB90E1E6DE2C300CF56FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8EFB8F21E6DE2C200CF56FD /* Project object */;
+}
