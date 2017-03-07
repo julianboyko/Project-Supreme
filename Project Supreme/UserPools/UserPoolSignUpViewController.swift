@@ -28,6 +28,7 @@ class UserPoolSignUpViewController: UIViewController {
     
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
+    var phoneNumber = "hey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,21 @@ class UserPoolSignUpViewController: UIViewController {
             phone?.value = phoneValue
             attributes.append(phone!)
         }
+        /* LAMBDA FUNCTION JUST RETURNED ERROR "PRESIGNUP FAILED WITH ERROR PLEASE WORK." which is an error that
+            i added to see if the phone_number attribute would come back as not null, add the almost done screen
+            to see if i still get the error when i add a phone number to the attributes array, this means that the
+            phone_number does have a value , even though it doesn't appear on in the attributes in the user pool
+            console. if you can figure out what that value is, you can check if the phone number equals that. if it
+            does, give an error and if it doesn't, let sign up happen normally. */
+        // A FEW WAYS TO FIGURE OUT IF THE USER ENTERED A NUMBER IS TO SEE IF THE STRING STARTS WITH +1 OR 
+        // SEE IF IT IS THE SAME LENGTH AS A PHONE NUMBER
+        // TRY PYTHON LAMBDA FUNCTION - U KNOW PYTHON BETTER
+        
+        
+        /*let phoneCheck = AWSCognitoIdentityUserAttributeType()
+        phoneCheck?.name = "zoneinfo"
+        phoneCheck?.value = "phoneVerify"
+        attributes.append(phoneCheck!)*/
         
         if let emailValue = self.email.text, !emailValue.isEmpty {
             let email = AWSCognitoIdentityUserAttributeType()
@@ -73,6 +89,9 @@ class UserPoolSignUpViewController: UIViewController {
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
+                    if error.userInfo["message"] as? String == "PreSignUp failed with error undefined." {
+                        //SEGUE ONTO PHONE VERIFY BITCHES
+                    }
                     UIAlertView(title: error.userInfo["__type"] as? String,
                         message: error.userInfo["message"] as? String,
                         delegate: nil,

@@ -29,7 +29,7 @@ extension SignInViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SignUp")
         //self.navigationController?.pushViewController(viewController, animated:true); *original AWS method of doing this
-        self.present(viewController, animated: true)A1
+        self.present(viewController, animated: true)
     }
     
     func handleUserPoolForgotPassword () {

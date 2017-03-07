@@ -37,6 +37,7 @@
 		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
 		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
 		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
+		E8EFB9461E6DF60900CF56FD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9451E6DF60900CF56FD /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +86,7 @@
 		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
 		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
 		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
+		E8EFB9451E6DF60900CF56FD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */,
+				E8EFB9451E6DF60900CF56FD /* TestViewController.swift */,
 				E8EFB9361E6DE6E300CF56FD /* UserPools */,
 			);
 			name = SignIn;
@@ -305,6 +308,7 @@
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */,
+				E8EFB9461E6DF60900CF56FD /* TestViewController.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +485,7 @@
 				E8EFB90E1E6DE2C300CF56FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
