@@ -67,13 +67,6 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
     
     func didCompleteStepWithError(_ error: Error?) {
         if let error = error as? NSError {
-            
-            // If the user doesn't exist, go through Sign Up Process
-            if error.userInfo["__type"] as? String == "UserNotFoundException" {
-                
-                return
-            }
-            //
             DispatchQueue.main.async(execute: {
                 UIAlertView(title: error.userInfo["__type"] as? String,
                     message: error.userInfo["message"] as? String,

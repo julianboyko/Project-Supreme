@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E809AB531E6FA9A3001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */; };
+		E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */; };
+		E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */; };
 		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
 		E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */; };
 		E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9011E6DE2C300CF56FD /* Main.storyboard */; };
@@ -38,7 +39,6 @@
 		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
 		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
 		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
-		E8EFB9461E6DF60900CF56FD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9451E6DF60900CF56FD /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,7 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpExtension.swift; sourceTree = "<group>"; };
+		E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
 		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
 		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
-		E8EFB9451E6DF60900CF56FD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */,
-				E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */,
-				E8EFB9451E6DF60900CF56FD /* TestViewController.swift */,
+				E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */,
+				E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */,
 				E8EFB9361E6DE6E300CF56FD /* UserPools */,
 			);
 			name = SignIn;
@@ -306,13 +306,13 @@
 				E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */,
 				E8EFB92D1E6DE45700CF56FD /* AWSMobileClient.swift in Sources */,
 				E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */,
+				E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */,
 				E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E8EFB93F1E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift in Sources */,
+				E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */,
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */,
-				E8EFB9461E6DF60900CF56FD /* TestViewController.swift in Sources */,
-				E809AB531E6FA9A3001A4287 /* SignUpViewController.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

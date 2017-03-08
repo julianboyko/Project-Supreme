@@ -22,35 +22,27 @@ class UserPoolSignUpViewController: UIViewController {
     var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
     
-    @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var retypePassword: UITextField!
-    
+    var userName: String!
+    var password: String!
     @IBOutlet weak var phone: UITextField!
-    @IBOutlet weak var email: UITextField!
+    var email: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(userName)
+        print(password)
+        print(email)
         self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpConfirmationViewController = segue.destination as? UserPoolSignUpConfirmationViewController {
             signUpConfirmationViewController.sentTo = self.sentTo
-            signUpConfirmationViewController.user = self.pool?.getUser(self.userName.text!)
+            signUpConfirmationViewController.user = self.pool?.getUser(self.userName!)
         }
     }
     
-    @IBAction func onSignUp(_ sender: AnyObject) {
-
-        guard let userNameValue = self.userName.text, !userNameValue.isEmpty,
-            let passwordValue = self.password.text, !passwordValue.isEmpty else {
-            UIAlertView(title: "Missing Required Fields",
-                        message: "Username / Password are required for registration.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
-            return
-        }
+    @IBAction func onSendSMS(_ sender: AnyObject) {
         
         var attributes = [AWSCognitoIdentityUserAttributeType]()
         
@@ -60,23 +52,8 @@ class UserPoolSignUpViewController: UIViewController {
             phone?.value = phoneValue
             attributes.append(phone!)
         }
-        /* LAMBDA FUNCTION JUST RETURNED ERROR "PRESIGNUP FAILED WITH ERROR PLEASE WORK." which is an error that
-            i added to see if the phone_number attribute would come back as not null, add the almost done screen
-            to see if i still get the error when i add a phone number to the attributes array, this means that the
-            phone_number does have a value , even though it doesn't appear on in the attributes in the user pool
-            console. if you can figure out what that value is, you can check if the phone number equals that. if it
-            does, give an error and if it doesn't, let sign up happen normally. */
-        // A FEW WAYS TO FIGURE OUT IF THE USER ENTERED A NUMBER IS TO SEE IF THE STRING STARTS WITH +1 OR 
-        // SEE IF IT IS THE SAME LENGTH AS A PHONE NUMBER
-        // TRY PYTHON LAMBDA FUNCTION - U KNOW PYTHON BETTER
         
-        
-        /*let phoneCheck = AWSCognitoIdentityUserAttributeType()
-        phoneCheck?.name = "zoneinfo"
-        phoneCheck?.value = "phoneVerify"
-        attributes.append(phoneCheck!)*/
-        
-        if let emailValue = self.email.text, !emailValue.isEmpty {
+        if let emailValue = self.email, !emailValue.isEmpty {
             let email = AWSCognitoIdentityUserAttributeType()
             email?.name = "email"
             email?.value = emailValue
@@ -84,13 +61,10 @@ class UserPoolSignUpViewController: UIViewController {
         }
         
         //sign up the user
-        self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
+        self.pool?.signUp(userName, password: password, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
-                    if error.userInfo["message"] as? String == "PreSignUp failed with error undefined." {
-                        //SEGUE ONTO PHONE VERIFY BITCHES
-                    }
                     UIAlertView(title: error.userInfo["__type"] as? String,
                         message: error.userInfo["message"] as? String,
                         delegate: nil,

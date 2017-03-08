@@ -29,8 +29,9 @@ class SignInViewController: UIViewController {
         didSignInObserver =  NotificationCenter.default.addObserver(forName: NSNotification.Name.AWSIdentityManagerDidSignIn, object: AWSIdentityManager.default(), queue: OperationQueue.main, using: {(note: Notification) -> Void in
             // perform successful login actions here
             //let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpConfirmation") as! UserPoolSignUpConfirmationViewController
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "test") as! TestViewController
-            self.present(vc, animated: true)
+            
+            //let vc = self.storyboard?.instantiateViewController(withIdentifier: "test") as! TestViewController
+            //self.present(vc, animated: true)
         })
         
         loginButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside)
