@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpPhoneVerify = segue.destination as? UserPoolSignUpViewController {
-            signUpPhoneVerify.userName = usernameTextField.text!
+            signUpPhoneVerify.userName = usernameTextField.text!.lowercased()
             signUpPhoneVerify.email = emailTextField.text!
             signUpPhoneVerify.password = passwordTextField.text!
         }

@@ -139,7 +139,7 @@
 		E8EFB8FC1E6DE2C300CF56FD /* Project Supreme */ = {
 			isa = PBXGroup;
 			children = (
-				E8EFB9351E6DE64E00CF56FD /* SignIn */,
+				E8EFB9351E6DE64E00CF56FD /* SignIn/SignUp/ForgotPass */,
 				E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */,
 				E8EFB9011E6DE2C300CF56FD /* Main.storyboard */,
 				E8EFB9041E6DE2C300CF56FD /* Assets.xcassets */,
@@ -185,7 +185,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E8EFB9351E6DE64E00CF56FD /* SignIn */ = {
+		E8EFB9351E6DE64E00CF56FD /* SignIn/SignUp/ForgotPass */ = {
 			isa = PBXGroup;
 			children = (
 				E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */,
@@ -193,7 +193,7 @@
 				E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */,
 				E8EFB9361E6DE6E300CF56FD /* UserPools */,
 			);
-			name = SignIn;
+			name = SignIn/SignUp/ForgotPass;
 			sourceTree = "<group>";
 		};
 		E8EFB9361E6DE6E300CF56FD /* UserPools */ = {
