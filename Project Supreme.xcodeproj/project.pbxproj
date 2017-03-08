@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E809AB531E6FA9A3001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */; };
 		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
 		E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */; };
 		E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9011E6DE2C300CF56FD /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */,
+				E809AB521E6FA9A3001A4287 /* SignUpViewController.swift */,
 				E8EFB9451E6DF60900CF56FD /* TestViewController.swift */,
 				E8EFB9361E6DE6E300CF56FD /* UserPools */,
 			);
@@ -309,6 +312,7 @@
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */,
 				E8EFB9461E6DF60900CF56FD /* TestViewController.swift in Sources */,
+				E809AB531E6FA9A3001A4287 /* SignUpViewController.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +442,7 @@
 					"$(PROJECT_DIR)/Sdk/Aws",
 					"$(PROJECT_DIR)/Sdk/Aws/extras",
 					"$(PROJECT_DIR)/AmazonAws",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Project Supreme/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -457,6 +462,7 @@
 					"$(PROJECT_DIR)/Sdk/Aws",
 					"$(PROJECT_DIR)/Sdk/Aws/extras",
 					"$(PROJECT_DIR)/AmazonAws",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Project Supreme/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

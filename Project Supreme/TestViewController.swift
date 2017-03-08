@@ -6,6 +6,7 @@
 //  Copyright © 2017 Supreme Apps. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import AWSMobileHubHelper
 import AWSCognitoIdentityProvider
@@ -25,13 +26,15 @@ class TestViewController: UIViewController {
         let pool = AWSCognitoIdentityUserPool(forKey: "UserPool")
         let _ = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "us-east-1:e41bf209-4073-405e-8114-0bd6915db3de", identityProviderManager:pool)
         
+        
+        
         /*if pool.getUser(username.text!).getDetails().isFaulted {
             print("nah")
         } else {
             print ("ya'")
         }*/
         
-        pool.getUser(username.text!).getDetails().continueWith(block: { (task: AWSTask) -> Any? in
+        /*pool.getUser(username.text!).getDetails().continueWith(block: { (task: AWSTask) -> Any? in
             if let error = task.error as? NSError {
                 if let type = error.userInfo["__type"] as? String {
                     if type == "UserNotFoundException" {
@@ -40,7 +43,7 @@ class TestViewController: UIViewController {
                 }
             }
             return nil
-        })
+        })*/
 
         /*if pool.getUser(username.text!).getDetails().error != nil {
             print("ya")

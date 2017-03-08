@@ -28,7 +28,6 @@ class UserPoolSignUpViewController: UIViewController {
     
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
-    var phoneNumber = "hey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
