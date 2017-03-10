@@ -39,30 +39,38 @@ extension SignUpViewController: AWSCognitoIdentityPasswordAuthentication {
     func didCompleteStepWithError(_ error: Error?) {
         if let error = error as? NSError {
             DispatchQueue.main.async(execute: {
+                
+                let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Ok", style: .cancel)
+                ac.addAction(okButton)
+                ac.title = "Oops"
+                
                 // Check if the user exists by "logging in" then if they don't. Continue to Sign up the user.
                 if error.userInfo["__type"] as? String == "UserNotFoundException" {
                     if self.passwordTextField.text!.characters.count < 6 {
-                        UIAlertView(title: "Hold up!",
-                                    message: "Password must be 6 characters or longer",
-                                    delegate: nil,
-                                    cancelButtonTitle: "Ok").show()
+                        ac.message = "Password must be 6 characters or longer!"
+                        self.present(ac, animated: true)
                         return
                     }
                     if self.passwordTextField.text! != self.retypePasswordTextField.text! {
-                        UIAlertView(title: "Hold up!",
-                                    message: "Your password's do not match!",
-                                    delegate: nil,
-                                    cancelButtonTitle: "Ok").show()
+                        ac.message = "Your password's do not match!"
+                        self.present(ac, animated: true)
+                        return
+                    }
+                    if self.emailTextField.text!.isEmpty || !self.emailTextField.text!.contains("@") || !self.emailTextField.text!.contains(".") {
+                        ac.message = "Please enter a valid email address"
+                        self.present(ac, animated: true)
                         return
                     }
                     self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
                     return
                 }
                 //
-                UIAlertView(title: "Sorry!",
-                            message: "\(self.usernameTextField.text!) is taken!",
-                            delegate: nil,
-                            cancelButtonTitle: "Ok").show()
+
+                ac.title = "Sorry!"
+                ac.message = "\(self.usernameTextField.text!) is taken!"
+                
+                self.present(ac, animated: true)
             })
         }
     }
@@ -75,10 +83,11 @@ extension SignUpViewController: AWSCognitoUserPoolsSignInHandler {
         guard let username = self.usernameTextField.text, !username.isEmpty,
             let password = self.passwordTextField.text, !password.isEmpty else {
                 DispatchQueue.main.async(execute: {
-                    UIAlertView(title: "Missing UserName / Password",
-                                message: "Please enter a valid user name / password.",
-                                delegate: nil,
-                                cancelButtonTitle: "Ok").show()
+                    let ac = UIAlertController(title: "Missing Username / Password",
+                                               message: "Please enter a valid user name / password.",
+                                               preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self.present(ac, animated: true)
                 })
                 return
         }
@@ -87,6 +96,6 @@ extension SignUpViewController: AWSCognitoUserPoolsSignInHandler {
         /*Entering a random UUID string into the password parameter so that during the Sign Up phase a user cannot accidentely enter a User that already exists and the
         password that goes with that user. This prevents logging in a user during the Sign Up Phase, because I use the AWS Login functions to check if a user already
         exists.*/
-        self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username, password: UUID().uuidString))
+        self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username.lowercased(), password: UUID().uuidString))
     }
 }

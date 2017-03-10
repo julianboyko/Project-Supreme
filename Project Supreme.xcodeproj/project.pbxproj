@@ -35,7 +35,6 @@
 		E8EFB9341E6DE53000CF56FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EFB9331E6DE53000CF56FD /* libz.tbd */; };
 		E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */; };
 		E8EFB93F1E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */; };
-		E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */; };
 		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
 		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
 		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
@@ -85,7 +84,6 @@
 		E8EFB9331E6DE53000CF56FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolMFAViewController.swift; sourceTree = "<group>"; };
 		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
 		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
 		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 			children = (
 				E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */,
 				E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */,
-				E8EFB9391E6DE6E300CF56FD /* UserPoolMFAViewController.swift */,
 				E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */,
 				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
 				E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */,
@@ -312,7 +309,6 @@
 				E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */,
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
-				E8EFB9401E6DE6E300CF56FD /* UserPoolMFAViewController.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

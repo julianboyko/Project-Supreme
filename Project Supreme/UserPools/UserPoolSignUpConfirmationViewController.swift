@@ -32,26 +32,25 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
     }
     
     @IBAction func onConfirm(_ sender: AnyObject) {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else {
-            UIAlertView(title: "Confirmation code missing.",
-                        message: "Please enter a valid confirmation code.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+            ac.title = "Confirmation code missing."
+            ac.message = "PLease enter a valid confirmation code."
+            present(ac, animated: true)
             return
         }
         self.user?.confirmSignUp(self.confirmationCode.text!, forceAliasCreation: true).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
-                    UIAlertView(title: error.userInfo["__type"] as? String,
-                        message: error.userInfo["message"] as? String,
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
                 } else {
-                    UIAlertView(title: "Registration Complete",
-                        message: "Registration was successful.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = "Registration Complete"
+                    ac.message = "Registration was successful."
+                    strongSelf.present(ac, animated: true)
                     _ = strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             })
@@ -60,19 +59,19 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
     }
     
     @IBAction func onResendConfirmationCode(_ sender: AnyObject) {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         self.user?.resendConfirmationCode().continueWith(block: {[weak self] (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> AnyObject? in
-            guard let _ = self else { return nil }
+            guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
-                    UIAlertView(title: error.userInfo["__type"] as? String,
-                        message: error.userInfo["message"] as? String,
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
                 } else if let result = task.result as AWSCognitoIdentityUserResendConfirmationCodeResponse! {
-                    UIAlertView(title: "Code Resent",
-                        message: "Code resent to \(result.codeDeliveryDetails?.destination!)",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = "Code Resent"
+                    ac.message = "Code resent to \(result.codeDeliveryDetails?.destination!)"
+                    strongSelf.present(ac, animated: true)
                 }
             })
             return nil
@@ -80,6 +79,6 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
     }
     
     @IBAction func onCancel(_ sender: AnyObject) {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true)
     }
 }

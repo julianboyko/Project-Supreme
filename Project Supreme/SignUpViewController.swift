@@ -49,6 +49,10 @@ class SignUpViewController: UIViewController {
         })
     }
     
+    @IBAction func onCancel(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 }
 
 

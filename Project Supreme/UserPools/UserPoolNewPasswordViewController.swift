@@ -22,34 +22,49 @@ class UserPoolNewPasswordViewController: UIViewController {
     
     @IBOutlet weak var confirmationCode: UITextField!
     @IBOutlet weak var updatedPassword: UITextField!
+    @IBOutlet weak var retypeUpdatedPassword: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    
     @IBAction func onUpdatePassword(_ sender: AnyObject) {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
         guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else {
-            UIAlertView(title: "Password Field Empty",
-                        message: "Please enter a password of your choice.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+            ac.title = "Code Field Empty"
+            ac.message = "Please enter the confirmation code."
+            self.present(ac, animated: true)
             return
         }
+        
+        if updatedPassword.text! != retypeUpdatedPassword.text! {
+            ac.title = "Oops"
+            ac.message = "Your password's do not match!"
+            self.present(ac, animated: true)
+            return
+        }
+        
+        if updatedPassword.text!.characters.count < 6 {
+            ac.title = "Oops"
+            ac.message = "Password must be 6 characters or longer!"
+            self.present(ac, animated: true)
+            return
+        }
+        
         //confirm forgot password with input from ui.
         _ = self.user?.confirmForgotPassword(confirmationCodeValue, password: self.updatedPassword.text!).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
-                    UIAlertView(title: error.userInfo["__type"] as? String,
-                        message: error.userInfo["message"] as? String,
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
                 } else {
-                    UIAlertView(title: "Password Reset Complete",
-                        message: "Password Reset was completed successfully.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = "Password Reset Complete"
+                    ac.message = "Password Reset was completed successfully"
+                    strongSelf.present(ac, animated: true)
                     _ = strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             })

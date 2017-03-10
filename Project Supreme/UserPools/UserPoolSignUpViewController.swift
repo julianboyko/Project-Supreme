@@ -29,9 +29,6 @@ class UserPoolSignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userName)
-        print(password)
-        print(email)
         self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
     }
     
@@ -45,6 +42,9 @@ class UserPoolSignUpViewController: UIViewController {
     @IBAction func onSendSMS(_ sender: AnyObject) {
         
         var attributes = [AWSCognitoIdentityUserAttributeType]()
+        
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
         if let phoneValue = self.phone.text, !phoneValue.isEmpty {
             let phone = AWSCognitoIdentityUserAttributeType()
@@ -65,10 +65,21 @@ class UserPoolSignUpViewController: UIViewController {
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
-                    UIAlertView(title: error.userInfo["__type"] as? String,
-                        message: error.userInfo["message"] as? String,
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    
+                    // If the user enters an invalid email address, push them back to the sign up credentials page
+                    if error.userInfo["__type"] as? String == "InvalidParameterException" {
+                        let invalidEmail = UIAlertController(title: "Oops", message: "Email is invalid", preferredStyle: .alert)
+                        let invalidEmailAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (action: UIAlertAction) in
+                            strongSelf.dismiss(animated: true)
+                        })
+                        invalidEmail.addAction(invalidEmailAction)
+                        strongSelf.present(invalidEmail, animated: true)
+                        return
+                    }
+                    
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
                     return
                 }
                 
@@ -78,10 +89,9 @@ class UserPoolSignUpViewController: UIViewController {
                         strongSelf.sentTo = result.codeDeliveryDetails?.destination
                         strongSelf.performSegue(withIdentifier: "SignUpConfirmSegue", sender:sender)
                     } else {
-                        UIAlertView(title: "Registration Complete",
-                            message: "Registration was successful.",
-                            delegate: nil,
-                            cancelButtonTitle: "Ok").show()
+                        ac.title = "Registration Complete"
+                        ac.message = "Registration was successful."
+                        strongSelf.present(ac, animated: true)
                         _ = strongSelf.navigationController?.popToRootViewController(animated: true)
                     }
                 }

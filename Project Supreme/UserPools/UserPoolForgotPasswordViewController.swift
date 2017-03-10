@@ -25,11 +25,12 @@ class UserPoolForgotPasswordViewController: UIViewController {
     @IBOutlet weak var userName: UITextField!
     
     @IBAction func onForgotPassword(_ sender: AnyObject) {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         guard let username = self.userName.text, !username.isEmpty else {
-            UIAlertView(title: "Missing UserName",
-                        message: "Please enter a valid user name.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+            ac.title = "Missing Username"
+            ac.message = "Please enter a valid user name."
+            self.present(ac, animated: true)
             return
         }
         
@@ -38,10 +39,9 @@ class UserPoolForgotPasswordViewController: UIViewController {
             guard let strongSelf = self else {return nil}
             DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
-                    UIAlertView(title: error.userInfo["__type"] as? String,
-                        message: error.userInfo["message"] as? String,
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
                 } else {
                     strongSelf.performSegue(withIdentifier: "NewPasswordSegue", sender: sender)
                 }
@@ -52,7 +52,7 @@ class UserPoolForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func onCancel(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     override func viewDidLoad() {

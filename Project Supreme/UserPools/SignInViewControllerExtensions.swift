@@ -35,7 +35,8 @@ extension SignInViewController {
     func handleUserPoolForgotPassword () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword")
-        self.navigationController?.pushViewController(viewController, animated:true);
+        //self.navigationController?.pushViewController(viewController, animated:true);
+        self.present(viewController, animated: true)
     }
 }
 
@@ -68,10 +69,11 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
     func didCompleteStepWithError(_ error: Error?) {
         if let error = error as? NSError {
             DispatchQueue.main.async(execute: {
-                UIAlertView(title: error.userInfo["__type"] as? String,
-                    message: error.userInfo["message"] as? String,
-                    delegate: nil,
-                    cancelButtonTitle: "Ok").show()
+                let ac = UIAlertController(title: error.userInfo["__type"] as? String,
+                                           message: error.userInfo["message"] as? String,
+                                           preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                self.present(ac, animated: true)
             })
         }
     }
@@ -84,14 +86,15 @@ extension SignInViewController: AWSCognitoUserPoolsSignInHandler {
         guard let username = self.usernameTextField.text, !username.isEmpty,
             let password = self.passwordTextField.text, !password.isEmpty else {
                 DispatchQueue.main.async(execute: {
-                    UIAlertView(title: "Missing UserName / Password",
-                        message: "Please enter a valid user name / password.",
-                        delegate: nil,
-                        cancelButtonTitle: "Ok").show()
+                    let ac = UIAlertController(title: "Missing UserName / Password",
+                                               message: "Please enter a valid user name / password.",
+                                               preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self.present(ac, animated: true)
                 })
                 return
         }
         // set the task completion result as an object of AWSCognitoIdentityPasswordAuthenticationDetails with username and password that the app user provides
-        self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username, password: password))
+        self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username.lowercased(), password: password))
     }
 }
