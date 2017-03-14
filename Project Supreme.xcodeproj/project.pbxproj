@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */; };
 		E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */; };
+		E89B34DA1E7842480044AA8A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B34D91E7842480044AA8A /* TestViewController.swift */; };
 		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
 		E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */; };
 		E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9011E6DE2C300CF56FD /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
 		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
 		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
+		E8F24DBA1E783C6A001B158E /* AWSAPIGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F24DB91E783C6A001B158E /* AWSAPIGateway.framework */; };
+		E8F24DBB1E783C6A001B158E /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F24DB91E783C6A001B158E /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +56,7 @@
 				E8EFB91B1E6DE3C900CF56FD /* AWSDynamoDB.framework in Embed Frameworks */,
 				E8EFB9191E6DE3C900CF56FD /* AWSCore.framework in Embed Frameworks */,
 				E8EFB91F1E6DE3C900CF56FD /* AWSS3.framework in Embed Frameworks */,
+				E8F24DBB1E783C6A001B158E /* AWSAPIGateway.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +66,7 @@
 /* Begin PBXFileReference section */
 		E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpExtension.swift; sourceTree = "<group>"; };
 		E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E89B34D91E7842480044AA8A /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
 		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
 		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
+		E8F24DB91E783C6A001B158E /* AWSAPIGateway.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSAPIGateway.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 				E8EFB9321E6DE52100CF56FD /* libsqlite3.tbd in Frameworks */,
 				E8EFB9221E6DE3DE00CF56FD /* AWSCognito.framework in Frameworks */,
 				E8EFB9161E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				E8F24DBA1E783C6A001B158E /* AWSAPIGateway.framework in Frameworks */,
 				E8EFB91C1E6DE3C900CF56FD /* AWSPinpoint.framework in Frameworks */,
 				E8EFB91A1E6DE3C900CF56FD /* AWSDynamoDB.framework in Frameworks */,
 				E8EFB9181E6DE3C900CF56FD /* AWSCore.framework in Frameworks */,
@@ -109,6 +116,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E89B34E21E7848A50044AA8A /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		E8EFB8F11E6DE2C200CF56FD = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +131,7 @@
 				E8EFB9251E6DE45700CF56FD /* AmazonAws */,
 				E8EFB8FB1E6DE2C300CF56FD /* Products */,
 				E8EFB9301E6DE52100CF56FD /* Frameworks */,
+				E8F24DB91E783C6A001B158E /* AWSAPIGateway.framework */,
 				E8EFB9211E6DE3DE00CF56FD /* AWSCognito.framework */,
 				E8EFB9111E6DE3C900CF56FD /* AWSCognitoIdentityProvider.framework */,
 				E8EFB9121E6DE3C900CF56FD /* AWSCore.framework */,
@@ -137,6 +152,7 @@
 		E8EFB8FC1E6DE2C300CF56FD /* Project Supreme */ = {
 			isa = PBXGroup;
 			children = (
+				E89B34D91E7842480044AA8A /* TestViewController.swift */,
 				E8EFB9351E6DE64E00CF56FD /* SignIn/SignUp/ForgotPass */,
 				E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */,
 				E8EFB9011E6DE2C300CF56FD /* Main.storyboard */,
@@ -150,6 +166,7 @@
 		E8EFB9251E6DE45700CF56FD /* AmazonAws */ = {
 			isa = PBXGroup;
 			children = (
+				E89B34E21E7848A50044AA8A /* API */,
 				E8EFB9261E6DE45700CF56FD /* AWSConfiguration.swift */,
 				E8EFB9271E6DE45700CF56FD /* AWSMobileClient.swift */,
 				E8EFB9281E6DE45700CF56FD /* AWSMobileHubHelper.framework */,
@@ -198,10 +215,10 @@
 			isa = PBXGroup;
 			children = (
 				E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */,
+				E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */,
+				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
 				E8EFB9381E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift */,
 				E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */,
-				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
-				E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */,
 			);
 			path = UserPools;
 			sourceTree = "<group>";
@@ -241,6 +258,7 @@
 					E8EFB8F91E6DE2C200CF56FD = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = MDQ38Q5ME9;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -298,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E89B34DA1E7842480044AA8A /* TestViewController.swift in Sources */,
 				E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */,
 				E8EFB92C1E6DE45700CF56FD /* AWSConfiguration.swift in Sources */,
 				E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */,
@@ -432,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MDQ38Q5ME9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,6 +464,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.supremeapps.Project-Supreme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -452,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MDQ38Q5ME9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

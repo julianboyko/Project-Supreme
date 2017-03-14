@@ -34,7 +34,7 @@ class UserPoolForgotPasswordViewController: UIViewController {
             return
         }
         
-        self.user = self.pool?.getUser(self.userName.text!)
+        self.user = self.pool?.getUser(self.userName.text!.lowercased())
         self.user?.forgotPassword().continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else {return nil}
             DispatchQueue.main.async(execute: {

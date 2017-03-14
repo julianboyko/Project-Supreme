@@ -67,7 +67,7 @@ class UserPoolSignUpViewController: UIViewController {
                 if let error = task.error as? NSError {
                     
                     // If the user enters an invalid email address, push them back to the sign up credentials page
-                    if error.userInfo["__type"] as? String == "InvalidParameterException" {
+                    if error.userInfo["message"] as? String == "Invalid email address format." {
                         let invalidEmail = UIAlertController(title: "Oops", message: "Email is invalid", preferredStyle: .alert)
                         let invalidEmailAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (action: UIAlertAction) in
                             strongSelf.dismiss(animated: true)
