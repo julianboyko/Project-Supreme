@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */; };
 		E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */; };
-		E825DA921E79875F004E84C3 /* AWSAPIGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */; };
-		E825DA931E79875F004E84C3 /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E82112121E798C8F0053CCAC /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; };
+		E82112131E798C8F0053CCAC /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E82112141E798C8F0053CCAC /* AWSAPIGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */; };
+		E82112151E798C8F0053CCAC /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E82112171E798D300053CCAC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82112161E798D300053CCAC /* TestViewController.swift */; };
 		E825DA991E79879A004E84C3 /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA941E79879A004E84C3 /* AWSCognitoIdentityProvider.framework */; };
 		E825DA9A1E79879A004E84C3 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA941E79879A004E84C3 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E825DA9B1E79879A004E84C3 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; };
-		E825DA9C1E79879A004E84C3 /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E825DA9D1E79879A004E84C3 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA961E79879A004E84C3 /* AWSDynamoDB.framework */; };
 		E825DA9E1E79879A004E84C3 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA961E79879A004E84C3 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E825DA9F1E79879A004E84C3 /* AWSPinpoint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA971E79879A004E84C3 /* AWSPinpoint.framework */; };
@@ -24,7 +25,8 @@
 		E825DAA41E7987CA004E84C3 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA31E7987CA004E84C3 /* AWSCognito.framework */; };
 		E825DAA51E7987CA004E84C3 /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA31E7987CA004E84C3 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E825DAA71E7987F6004E84C3 /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA61E7987F6004E84C3 /* AWSMobileHubHelper.framework */; };
-		E89B34DA1E7842480044AA8A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B34D91E7842480044AA8A /* TestViewController.swift */; };
+		E825DAAD1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */; };
+		E825DAAE1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */; };
 		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
 		E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */; };
 		E8EFB9031E6DE2C300CF56FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EFB9011E6DE2C300CF56FD /* Main.storyboard */; };
@@ -50,13 +52,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E825DA931E79875F004E84C3 /* AWSAPIGateway.framework in Embed Frameworks */,
 				E825DA9A1E79879A004E84C3 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
 				E825DAA21E79879A004E84C3 /* AWSS3.framework in Embed Frameworks */,
 				E825DA9E1E79879A004E84C3 /* AWSDynamoDB.framework in Embed Frameworks */,
 				E825DAA01E79879A004E84C3 /* AWSPinpoint.framework in Embed Frameworks */,
-				E825DA9C1E79879A004E84C3 /* AWSCore.framework in Embed Frameworks */,
 				E825DAA51E7987CA004E84C3 /* AWSCognito.framework in Embed Frameworks */,
+				E82112131E798C8F0053CCAC /* AWSCore.framework in Embed Frameworks */,
+				E82112151E798C8F0053CCAC /* AWSAPIGateway.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +68,7 @@
 /* Begin PBXFileReference section */
 		E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpExtension.swift; sourceTree = "<group>"; };
 		E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E82112161E798D300053CCAC /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSAPIGateway.framework; sourceTree = "<group>"; };
 		E825DA941E79879A004E84C3 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
 		E825DA951E79879A004E84C3 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
@@ -74,7 +77,11 @@
 		E825DA981E79879A004E84C3 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		E825DAA31E7987CA004E84C3 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognito.framework; sourceTree = "<group>"; };
 		E825DAA61E7987F6004E84C3 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
-		E89B34D91E7842480044AA8A /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		E825DAA91E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_Empty.h; sourceTree = "<group>"; };
+		E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_Empty.m; sourceTree = "<group>"; };
+		E825DAAB1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.h; sourceTree = "<group>"; };
+		E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.m; sourceTree = "<group>"; };
+		E825DAAF1E798A69004E84C3 /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
 		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8EFB8FF1E6DE2C300CF56FD /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -104,12 +111,12 @@
 				E8EFB9341E6DE53000CF56FD /* libz.tbd in Frameworks */,
 				E8EFB9321E6DE52100CF56FD /* libsqlite3.tbd in Frameworks */,
 				E825DAA11E79879A004E84C3 /* AWSS3.framework in Frameworks */,
-				E825DA921E79875F004E84C3 /* AWSAPIGateway.framework in Frameworks */,
+				E82112141E798C8F0053CCAC /* AWSAPIGateway.framework in Frameworks */,
 				E825DAA41E7987CA004E84C3 /* AWSCognito.framework in Frameworks */,
 				E825DA991E79879A004E84C3 /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				E825DA9F1E79879A004E84C3 /* AWSPinpoint.framework in Frameworks */,
 				E825DA9D1E79879A004E84C3 /* AWSDynamoDB.framework in Frameworks */,
-				E825DA9B1E79879A004E84C3 /* AWSCore.framework in Frameworks */,
+				E82112121E798C8F0053CCAC /* AWSCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +126,10 @@
 		E89B34E21E7848A50044AA8A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				E825DAA91E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.h */,
+				E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */,
+				E825DAAB1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */,
+				E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -145,7 +156,7 @@
 		E8EFB8FC1E6DE2C300CF56FD /* Project Supreme */ = {
 			isa = PBXGroup;
 			children = (
-				E89B34D91E7842480044AA8A /* TestViewController.swift */,
+				E82112161E798D300053CCAC /* TestViewController.swift */,
 				E8EFB9351E6DE64E00CF56FD /* SignIn/SignUp/ForgotPass */,
 				E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */,
 				E8EFB9011E6DE2C300CF56FD /* Main.storyboard */,
@@ -159,6 +170,7 @@
 		E8EFB9251E6DE45700CF56FD /* AmazonAws */ = {
 			isa = PBXGroup;
 			children = (
+				E825DAAF1E798A69004E84C3 /* Bridging_Header.h */,
 				E89B34E21E7848A50044AA8A /* API */,
 				E8EFB9261E6DE45700CF56FD /* AWSConfiguration.swift */,
 				E8EFB9271E6DE45700CF56FD /* AWSMobileClient.swift */,
@@ -316,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E89B34DA1E7842480044AA8A /* TestViewController.swift in Sources */,
+				E825DAAD1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */,
 				E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */,
 				E8EFB92C1E6DE45700CF56FD /* AWSConfiguration.swift in Sources */,
 				E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */,
@@ -326,7 +338,9 @@
 				E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E8EFB93F1E6DE6E300CF56FD /* UserPoolForgotPasswordViewController.swift in Sources */,
 				E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */,
+				E82112171E798D300053CCAC /* TestViewController.swift in Sources */,
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
+				E825DAAE1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);
@@ -461,9 +475,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Project Supreme/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.supremeapps.Project-Supreme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = AmazonAws/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -483,9 +499,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Project Supreme/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.supremeapps.Project-Supreme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = AmazonAws/Bridging_Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

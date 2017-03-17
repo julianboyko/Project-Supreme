@@ -26,3 +26,7 @@ let AWSCognitoUserPoolRegion: AWSRegionType = .USEast1
 
 // Cognito User Pools Client Secret
 let AWSCognitoUserPoolClientSecret: String = "gqj6q1tb68bojd3al451cia37h2iaaj11tvivat23ahsnjpp3ek"
+
+// Identifier for Cloud Logic API invocation clients
+let AWSCloudLogicDefaultConfigurationKey: String = "CloudLogicAPIKey"
+let AWSCloudLogicDefaultRegion: AWSRegionType = .USEast1
