@@ -34,7 +34,10 @@ extension SignInViewController {
     
     func handleUserPoolForgotPassword () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword") as! ForgotPasswordViewController
+        if !self.usernameTextField.text!.isEmpty {
+            viewController.userName = self.usernameTextField.text!
+        }
         //self.navigationController?.pushViewController(viewController, animated:true);
         self.present(viewController, animated: true)
     }

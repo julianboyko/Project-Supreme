@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="upw-GI-E3X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,44 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test View Controller-->
-        <scene sceneID="HBY-ia-UA6">
-            <objects>
-                <viewController id="upw-GI-E3X" customClass="TestViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kvq-cv-D7Y"/>
-                        <viewControllerLayoutGuide type="bottom" id="m18-yf-MVn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lxV-qV-ZHm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd2-ld-wDi">
-                                <rect key="frame" x="164" y="218" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="tapped:" destination="upw-GI-E3X" eventType="touchUpInside" id="IUK-eP-0w3"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4p1-XF-rWl">
-                                <rect key="frame" x="93" y="88" width="189" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="textField" destination="4p1-XF-rWl" id="m2b-PE-Zw1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KQ2-rP-3jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-772" y="74"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -109,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="74.212893553223395"/>
         </scene>
-        <!--User Pool Forgot Password View Controller-->
+        <!--Forgot Password View Controller-->
         <scene sceneID="KII-F3-F4G">
             <objects>
-                <viewController storyboardIdentifier="ForgotPassword" id="jPj-cf-pTC" customClass="UserPoolForgotPasswordViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPassword" id="jPj-cf-pTC" customClass="ForgotPasswordViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v6g-Oy-izf"/>
                         <viewControllerLayoutGuide type="bottom" id="lT7-R0-zbV"/>
@@ -139,7 +101,7 @@
                                     <color key="titleShadowColor" red="0.55783634630000001" green="0.1268290128" blue="0.65422676280000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onForgotPassword:" destination="jPj-cf-pTC" eventType="touchUpInside" id="hjI-D6-G5t"/>
+                                    <action selector="onForgotPassword:" destination="jPj-cf-pTC" eventType="touchUpInside" id="V1r-kA-Etl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BK-97-85W">
@@ -147,7 +109,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <action selector="onCancel:" destination="jPj-cf-pTC" eventType="touchUpInside" id="HK3-36-G5u"/>
+                                    <action selector="onCancel:" destination="jPj-cf-pTC" eventType="touchUpInside" id="qrz-4i-jWt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUg-dF-VlA">
@@ -161,13 +123,76 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="userName" destination="BaE-jh-kBV" id="izp-TF-J3i"/>
-                        <segue destination="Qqt-4y-tcz" kind="show" identifier="NewPasswordSegue" id="CFj-tO-MdI"/>
+                        <outlet property="userNameTextField" destination="BaE-jh-kBV" id="n8p-0E-t1P"/>
+                        <segue destination="y8t-GR-ggX" kind="show" identifier="VerifyPhoneNumber" id="slL-vb-Nei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhp-VQ-8dD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="760.79999999999995" y="73.313343328335833"/>
+        </scene>
+        <!--Forgot Password Verify Phone Number View Controller-->
+        <scene sceneID="KcC-qy-WRi">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordVerifyPhoneNumber" id="y8t-GR-ggX" customClass="ForgotPasswordVerifyPhoneNumberViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZlA-TL-3oZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="183-rG-ELN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pUX-rM-96M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLE-bY-ypP">
+                                <rect key="frame" x="60" y="20" width="255" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Please enter the phone number
+tied to the account:
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dRP-sn-h7f">
+                                <rect key="frame" x="16" y="100" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-e4-5GB">
+                                <rect key="frame" x="16" y="146" width="343" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.76019318130000002" green="0.80621141919999995" blue="0.88976362180000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <size key="titleShadowOffset" width="1" height="0.5"/>
+                                <state key="normal" title="SEND SMS">
+                                    <color key="titleColor" red="0.69175382389999995" green="0.1240010075" blue="0.90194310899999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.55783634630000001" green="0.1268290128" blue="0.65422676280000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSendSMS:" destination="y8t-GR-ggX" eventType="touchUpInside" id="3Sa-67-UBm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njc-zP-BmL">
+                                <rect key="frame" x="163" y="617" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="y8t-GR-ggX" eventType="touchUpInside" id="dFO-gf-Tbm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="phoneNumberTextField" destination="dRP-sn-h7f" id="i76-kZ-Ccp"/>
+                        <segue destination="Qqt-4y-tcz" kind="show" identifier="NewPasswordSegue" id="EIT-wA-eYz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V9p-zd-XmK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1544.8" y="70.614692653673174"/>
         </scene>
         <!--User Pool New Password View Controller-->
         <scene sceneID="Bxm-Tl-J6G">
@@ -242,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUm-V7-E1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="74"/>
+            <point key="canvasLocation" x="2324" y="71"/>
         </scene>
         <!--User Pool Sign Up Confirmation View Controller-->
         <scene sceneID="swi-27-9pX">
