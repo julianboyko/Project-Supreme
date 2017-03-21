@@ -13,6 +13,8 @@ import AWSMobileHubHelper
 // Extension containing methods which call different operations on Cognito User Pools (Sign In, Sign Up, Forgot Password)
 extension SignUpViewController {
     
+    // This class is a replica of the "SignInViewControllerExtensions" class. It is editted to match the needs of the SignUp process.
+    
     func handleCustomSignIn() {
         // set the interactive auth delegate to self, since this view controller handles the login process for user pools
         AWSCognitoUserPoolsSignInProvider.sharedInstance().setInteractiveAuthDelegate(self)
@@ -37,36 +39,39 @@ extension SignUpViewController: AWSCognitoIdentityPasswordAuthentication {
     }
     
     func didCompleteStepWithError(_ error: Error?) {
+        // this function checks if there is any errors when trying to login the user in, and if there are - we return those errors back to the user
         if let error = error as? NSError {
             DispatchQueue.main.async(execute: {
                 
+                // creating the UIAlertController with a nil title & message to be later customized dependending on what error is received
                 let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "Ok", style: .cancel)
+                let okButton = UIAlertAction(title: "Ok", style: .cancel) // adding a Ok button that is set as a .cancel, to be shown if an error takes place
                 ac.addAction(okButton)
-                ac.title = "Oops"
+                ac.title = "Oops" // setting default title as "Oops" because that is going to be the most common title for the UIAlertController for most of the errors
                 
-                // Check if the user exists by "logging in" then if they don't. Continue to Sign up the user.
+                // Check if the user exists by "logging in" then if they don't. Continue to check how valid the credentials the new user provides are.
                 if error.userInfo["__type"] as? String == "UserNotFoundException" {
-                    if self.passwordTextField.text!.characters.count < 6 {
+                    if self.passwordTextField.text!.characters.count < 6 { // checks if the password the new user enters is shorter than 6 characters
                         ac.message = "Password must be 6 characters or longer!"
                         self.present(ac, animated: true)
                         return
                     }
-                    if self.passwordTextField.text! != self.retypePasswordTextField.text! {
+                    if self.passwordTextField.text! != self.retypePasswordTextField.text! { // checks if the passwords that the new user enters match each other
                         ac.message = "Your password's do not match!"
                         self.present(ac, animated: true)
                         return
                     }
-                    if self.emailTextField.text!.isEmpty || !self.emailTextField.text!.contains("@") || !self.emailTextField.text!.contains(".") {
+                    if self.emailTextField.text!.isEmpty || !self.emailTextField.text!.contains("@") || !self.emailTextField.text!.contains(".") { // checks if the email that the new user enters doesn't contain a "@" or "." or is empty. if any of those checks are true, then the email can't be a valid one
                         ac.message = "Please enter a valid email address"
                         self.present(ac, animated: true)
                         return
                     }
+                    // if the username isn't taken by another user and no other errors are found with the credentials entered by the new user, then segue them onto the "UserPoolSignUpViewController"
                     self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
                     return
                 }
-                //
-
+                
+                // if the username is taken by another user, let the new user know 
                 ac.title = "Sorry!"
                 ac.message = "\(self.usernameTextField.text!) is taken!"
                 

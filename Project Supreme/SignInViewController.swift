@@ -11,14 +11,14 @@ import AWSMobileHubHelper
 
 class SignInViewController: UIViewController {
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField! // textField where the user enters his/her username
+    @IBOutlet weak var passwordTextField: UITextField! // textField where the user enters his/her password
     
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var createAccountButton: UIButton!
-    @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var loginButton: UIButton! // uibutton that is clicked to activate the login
+    @IBOutlet weak var createAccountButton: UIButton! // uibutton that is clicked to go to the create account screen
+    @IBOutlet weak var forgotPassword: UIButton! // uibutton that is clicked to go to the forgot password screen
     
-    var didSignInObserver: AnyObject!
+    var didSignInObserver: AnyObject! // observer that is later attached to the notification center to check if the user is already logged in
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AnyObject>?
     
     override func viewDidLoad() {
@@ -26,7 +26,8 @@ class SignInViewController: UIViewController {
         
         print("Sign In Loading.")
         
-        didSignInObserver =  NotificationCenter.default.addObserver(forName: NSNotification.Name.AWSIdentityManagerDidSignIn, object: AWSIdentityManager.default(), queue: OperationQueue.main, using: {(note: Notification) -> Void in
+        // checks if the user is already logged in
+        didSignInObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AWSIdentityManagerDidSignIn, object: AWSIdentityManager.default(), queue: OperationQueue.main, using: {(note: Notification) -> Void in
             // perform successful login actions here
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpConfirmation") as! UserPoolSignUpConfirmationViewController
             
@@ -34,18 +35,20 @@ class SignInViewController: UIViewController {
             self.present(vc, animated: true)
         })
         
-        loginButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside)
-        createAccountButton.addTarget(self, action: Selector(("handleUserPoolSignUp")), for: .touchUpInside)
-        forgotPassword.addTarget(self, action: Selector(("handleUserPoolForgotPassword")), for: .touchUpInside)
+        loginButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the login button
+        createAccountButton.addTarget(self, action: Selector(("handleUserPoolSignUp")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the create account button
+        forgotPassword.addTarget(self, action: Selector(("handleUserPoolForgotPassword")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the forgot password button
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(didSignInObserver)
+        NotificationCenter.default.removeObserver(didSignInObserver) // if the user isn't logged in, remove the observer
     }
     
+    // gets the users identity.. I don't think I use this anywhere..
     func getUserIdentity() -> String {
         return AWSIdentityManager.default().identityId!
     }
+    
     
     func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
         AWSIdentityManager.default().login(signInProvider: signInProvider, completionHandler:

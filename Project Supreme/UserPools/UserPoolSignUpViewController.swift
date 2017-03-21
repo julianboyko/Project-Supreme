@@ -19,41 +19,45 @@ import AWSCognitoIdentityProvider
 
 class UserPoolSignUpViewController: UIViewController {
     
-    var pool: AWSCognitoIdentityUserPool?
-    var sentTo: String?
+    var pool: AWSCognitoIdentityUserPool? // variable for the user pool
+    var sentTo: String? // this variable will hold the destination that the verification code will be sent to
     
-    var userName: String!
-    var password: String!
-    @IBOutlet weak var phone: UITextField!
-    var email: String!
+    var userName: String! // variable that holds the user name entered in the "SignUpViewController"
+    var password: String! // variable that holds the password entered in the "SignUpViewController"
+    @IBOutlet weak var phone: UITextField! // textField where a new user enters his/her phone number 
+    var email: String! // variable that holds the email entered in the "SignUpViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey) // setting the pool variable to the UserPool that I'm using in AWS
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // if a valid phone number is entered and everything else checks out, segue the user onto the UserPoolSignUpConfirmationViewController where the user enters the verification code sent to the phone number the user entered
         if let signUpConfirmationViewController = segue.destination as? UserPoolSignUpConfirmationViewController {
+            // set the sentTo variable in the UserPoolSignUpConfirmation to the sentTo variable on this view controller
             signUpConfirmationViewController.sentTo = self.sentTo
+            // set the user variable in the UserPoolSignUpConfirmation to the current user
             signUpConfirmationViewController.user = self.pool?.getUser(self.userName!)
         }
     }
     
     @IBAction func onSendSMS(_ sender: AnyObject) {
+        // this function is ran when the user clicks the sendSMS uibutton
         
-        var attributes = [AWSCognitoIdentityUserAttributeType]()
+        var attributes = [AWSCognitoIdentityUserAttributeType]() // array list of User Attribute Type's
         
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
-        if let phoneValue = self.phone.text, !phoneValue.isEmpty {
+        if let phoneValue = self.phone.text, !phoneValue.isEmpty { // adding the phone_number attribute to the user's phone number user attribute
             let phone = AWSCognitoIdentityUserAttributeType()
             phone?.name = "phone_number"
             phone?.value = phoneValue
             attributes.append(phone!)
         }
         
-        if let emailValue = self.email, !emailValue.isEmpty {
+        if let emailValue = self.email, !emailValue.isEmpty { // adding the email attribute to the user's email user attribute
             let email = AWSCognitoIdentityUserAttributeType()
             email?.name = "email"
             email?.value = emailValue
@@ -66,7 +70,7 @@ class UserPoolSignUpViewController: UIViewController {
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
                     
-                    // If the user enters an invalid email address, push them back to the sign up credentials page
+                    // if the user enters an invalid email address, push them back to the sign up credentials page (previous page)
                     if error.userInfo["message"] as? String == "Invalid email address format." {
                         let invalidEmail = UIAlertController(title: "Oops", message: "Email is invalid", preferredStyle: .alert)
                         let invalidEmailAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (action: UIAlertAction) in
@@ -83,12 +87,14 @@ class UserPoolSignUpViewController: UIViewController {
                     return
                 }
                 
+                // if the sign up is successful
                 if let result = task.result as AWSCognitoIdentityUserPoolSignUpResponse! {
                     // handle the case where user has to confirm his identity via email / SMS
-                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-                        strongSelf.sentTo = result.codeDeliveryDetails?.destination
-                        strongSelf.performSegue(withIdentifier: "SignUpConfirmSegue", sender:sender)
+                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) { // checks if the current user's confirmed status is unconfirmed
+                        strongSelf.sentTo = result.codeDeliveryDetails?.destination // sets the sentTo variable to the codeDeliveryDetails destination
+                        strongSelf.performSegue(withIdentifier: "SignUpConfirmSegue", sender:sender) // segue the user onto the UserPoolSignUpConfirmationViewController
                     } else {
+                        // if the user is already confirmed then tell them the registration is complete, and that it was successful 
                         ac.title = "Registration Complete"
                         ac.message = "Registration was successful."
                         strongSelf.present(ac, animated: true)

@@ -19,35 +19,40 @@ import AWSMobileHubHelper
 
 class UserPoolSignUpConfirmationViewController : UIViewController {
     
-    var sentTo: String?
-    var user: AWSCognitoIdentityUser?
+    var sentTo: String? // variable that holds the code details destination that was passed from the UserPoolSignUpViewController
+    var user: AWSCognitoIdentityUser? // variable that holds the current user which was passed from the UserPoolSignUpViewController
     
-    @IBOutlet weak var codeSentTo: UILabel!
-    @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var confirmationCode: UITextField!
+    @IBOutlet weak var codeSentTo: UILabel! // uiLabel that displays part of the phone number that the verification code was sent to
+    @IBOutlet weak var confirmationCode: UITextField! // textField that is used to enter the verification code that was sent to the new user's phone number
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.userName.text = self.user!.username;
+        self.codeSentTo.text = sentTo // sets the text of the codeSentTo uilabel to the sentTo variable
     }
     
     @IBAction func onConfirm(_ sender: AnyObject) {
+        // this function is ran when the user clicks the verify button
+        
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-        guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else {
+        guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else { // checks if the confirmationCode textField is empty, and if it is, send an error to the user
             ac.title = "Confirmation code missing."
             ac.message = "PLease enter a valid confirmation code."
             present(ac, animated: true)
             return
         }
         self.user?.confirmSignUp(self.confirmationCode.text!, forceAliasCreation: true).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
+            // attempts to complete the signing up process of the user by confirming their account with the verification code that they entered in the confirmationCode textField 
+            
             guard let strongSelf = self else { return nil }
-            DispatchQueue.main.async(execute: { 
+            DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
+                    // if there is an error while attempting to confirm the user, send the error back to the user
                     ac.title = error.userInfo["__type"] as? String
                     ac.message = error.userInfo["message"] as? String
                     strongSelf.present(ac, animated: true)
                 } else {
+                    // if there are no errors, and everything worked successfully. complete the registration by sending a success message back to the user
                     ac.title = "Registration Complete"
                     ac.message = "Registration was successful."
                     strongSelf.present(ac, animated: true)
@@ -59,16 +64,22 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
     }
     
     @IBAction func onResendConfirmationCode(_ sender: AnyObject) {
+        // this function is ran when the user clicks on resend confirmation code uibutton 
+        
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         self.user?.resendConfirmationCode().continueWith(block: {[weak self] (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> AnyObject? in
+            // attempting to resend the confirmation code to the phone number the user has entered in the previous screen (UserPoolSignUpViewController)
+            
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
                 if let error = task.error as? NSError {
+                    // if there is an error while attempting to resend the confirmation code to the user, send that error back to the user
                     ac.title = error.userInfo["__type"] as? String
                     ac.message = error.userInfo["message"] as? String
                     strongSelf.present(ac, animated: true)
                 } else if let result = task.result as AWSCognitoIdentityUserResendConfirmationCodeResponse! {
+                    // if there is no error and the text is going through to the user, tell the user that 
                     ac.title = "Code Resent"
                     ac.message = "Code resent to \(result.codeDeliveryDetails?.destination!)"
                     strongSelf.present(ac, animated: true)

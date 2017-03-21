@@ -18,35 +18,37 @@ import AWSMobileHubHelper
 
 class UserPoolNewPasswordViewController: UIViewController {
     
-    var user: AWSCognitoIdentityUser?
+    var user: AWSCognitoIdentityUser? // variable that holds the user that we are changing the password of. was passed to this view controller from the previous view controller (ForgotPasswordPhoneNumberViewController)
     
-    @IBOutlet weak var confirmationCode: UITextField!
-    @IBOutlet weak var updatedPassword: UITextField!
-    @IBOutlet weak var retypeUpdatedPassword: UITextField!
+    @IBOutlet weak var confirmationCode: UITextField! // textField where the user enters the confirmation code that was sent to the phone number associated with the account
+    @IBOutlet weak var updatedPassword: UITextField! // textField where the user will enter the new password
+    @IBOutlet weak var retypeUpdatedPassword: UITextField! // textField where the user will re-enter the new password
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func onUpdatePassword(_ sender: AnyObject) {
+        // this function is ran when the user clicks on update password uibutton 
+        
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
-        guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else {
+        guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else { // if the confirmation code textField is empty
             ac.title = "Code Field Empty"
             ac.message = "Please enter the confirmation code."
             self.present(ac, animated: true)
             return
         }
         
-        if updatedPassword.text! != retypeUpdatedPassword.text! {
+        if updatedPassword.text! != retypeUpdatedPassword.text! { // if the password's the user entered do not match
             ac.title = "Oops"
             ac.message = "Your password's do not match!"
             self.present(ac, animated: true)
             return
         }
         
-        if updatedPassword.text!.characters.count < 6 {
+        if updatedPassword.text!.characters.count < 6 { // if the password that the user entered is shorter than 6 characters
             ac.title = "Oops"
             ac.message = "Password must be 6 characters or longer!"
             self.present(ac, animated: true)
@@ -56,12 +58,14 @@ class UserPoolNewPasswordViewController: UIViewController {
         //confirm forgot password with input from ui.
         _ = self.user?.confirmForgotPassword(confirmationCodeValue, password: self.updatedPassword.text!).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
-            DispatchQueue.main.async(execute: { 
+            DispatchQueue.main.async(execute: {
+                // if there was an error trying to change the user's password, show the user the error
                 if let error = task.error as? NSError {
                     ac.title = error.userInfo["__type"] as? String
                     ac.message = error.userInfo["message"] as? String
                     strongSelf.present(ac, animated: true)
                 } else {
+                    // if everything was succesful, let the user know 
                     ac.title = "Password Reset Complete"
                     ac.message = "Password Reset was completed successfully"
                     strongSelf.present(ac, animated: true)

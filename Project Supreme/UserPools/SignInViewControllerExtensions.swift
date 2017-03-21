@@ -26,6 +26,7 @@ extension SignInViewController {
     }
     
     func handleUserPoolSignUp () {
+        // this function is ran when the create account button is clicked on the SignIn view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SignUp")
         //self.navigationController?.pushViewController(viewController, animated:true); *original AWS method of doing this
@@ -33,10 +34,12 @@ extension SignInViewController {
     }
     
     func handleUserPoolForgotPassword () {
+        // this function is ran when the forgot password button is clicked in the SignIn view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword") as! ForgotPasswordViewController
+        // checks if the username textField is empty in the SignIn view controller. If it is not empty when the user clicks the forgot password button, then the text in the username textField is then put into the text of the username textField on the ForgotPassword view controller
         if !self.usernameTextField.text!.isEmpty {
-            viewController.userName = self.usernameTextField.text!
+            viewController.userName = self.usernameTextField.text! // sets the text of the username textField on the ForgotPassword view controller to the text of the username textField on the SignIn view controller
         }
         //self.navigationController?.pushViewController(viewController, animated:true);
         self.present(viewController, animated: true)
@@ -99,5 +102,6 @@ extension SignInViewController: AWSCognitoUserPoolsSignInHandler {
         }
         // set the task completion result as an object of AWSCognitoIdentityPasswordAuthenticationDetails with username and password that the app user provides
         self.passwordAuthenticationCompletion?.set(result: AWSCognitoIdentityPasswordAuthenticationDetails(username: username.lowercased(), password: password))
+        // ^^^ sets the username to lowercased before doing the login process, because all usernames are lowercased in the cognito user pool 
     }
 }
