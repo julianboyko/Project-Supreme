@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSMobileHubHelper
+import AWSCognitoIdentityProvider
 
 class SignInViewController: UIViewController {
     
@@ -21,10 +22,14 @@ class SignInViewController: UIViewController {
     var didSignInObserver: AnyObject! // observer that is later attached to the notification center to check if the user is already logged in
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AnyObject>?
     
+    var pool: AWSCognitoIdentityUserPool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("Sign In Loading.")
+        
+        self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
         
         // checks if the user is already logged in
         didSignInObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AWSIdentityManagerDidSignIn, object: AWSIdentityManager.default(), queue: OperationQueue.main, using: {(note: Notification) -> Void in

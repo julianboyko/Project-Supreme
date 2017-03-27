@@ -102,11 +102,8 @@ class ForgotPasswordViewController: UIViewController {
                 if let dictionary = object as? [String: AnyObject] { // set the object to a dictionary with the type [String: AnyObject]
                     self.readJSONObject(object: dictionary) // run the readJSONObject function and pass in the dictionary made through the responseData
                     
-                    for attribute in self.userAttributes { // the readJSONObject function above sets the "userAttributes" global variable. so now we are going to loop through the array
-                        let json = JSON(object: attribute) // use SwiftyJSON to read the attributes in the userAttributes variable
-                        if json["Name"].string == "phone_number" { // if the attribute that we are currently on in the loop has the name ("Name") "phone_number" then we have found the phone number attribute
-                            self.userPhoneNumber = json["Value"].string! // now we set the userPhoneNumber variable to the value ("Value") of the "phone_number", which is the phone number of the user entered
-                        }
+                    for case let attr in self.userAttributes where JSON(object: attr)["Name"].string == "phone_number" {
+                        self.userPhoneNumber = JSON(object: attr)["Value"].string!
                     }
                     
                     DispatchQueue.main.async(execute: {

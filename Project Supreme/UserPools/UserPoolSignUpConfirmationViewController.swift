@@ -19,6 +19,8 @@ import AWSMobileHubHelper
 
 class UserPoolSignUpConfirmationViewController : UIViewController {
     
+    var newUserInfo: (username: String?, password: String?, email: String?)
+    
     var sentTo: String? // variable that holds the code details destination that was passed from the UserPoolSignUpViewController
     var user: AWSCognitoIdentityUser? // variable that holds the current user which was passed from the UserPoolSignUpViewController
     
@@ -37,7 +39,7 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
         ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
         guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else { // checks if the confirmationCode textField is empty, and if it is, send an error to the user
             ac.title = "Confirmation code missing."
-            ac.message = "PLease enter a valid confirmation code."
+            ac.message = "Please enter a valid confirmation code."
             present(ac, animated: true)
             return
         }
@@ -89,7 +91,29 @@ class UserPoolSignUpConfirmationViewController : UIViewController {
         })
     }
     
+    func signInConfirmation() {
+        self.user?.resendConfirmationCode().continueWith(block: {[weak self] (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> AnyObject? in
+            
+            guard let strongSelf = self else { return nil }
+            DispatchQueue.main.async(execute: {
+                if let error = task.error as? NSError {
+                    let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    ac.title = error.userInfo["__type"] as? String
+                    ac.message = error.userInfo["message"] as? String
+                    strongSelf.present(ac, animated: true)
+                } else if let result = task.result as AWSCognitoIdentityUserResendConfirmationCodeResponse! {
+                    self!.codeSentTo.text = "\(result.codeDeliveryDetails!.destination!)"
+                }
+            })
+            return nil
+        })
+    }
+    
     @IBAction func onCancel(_ sender: AnyObject) {
-        self.dismiss(animated: true)
+        if let presenter = presentingViewController as? SignUpPhoneViewController {
+            presenter.newUserInfo = self.newUserInfo
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

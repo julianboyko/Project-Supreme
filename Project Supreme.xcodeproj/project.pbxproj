@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */; };
-		E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */; };
+		E80934141E840C3D0071722C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80934131E840C3D0071722C /* SignUpViewController.swift */; };
+		E80934161E84291A0071722C /* SignUpPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80934151E84291A0071722C /* SignUpPhoneViewController.swift */; };
 		E82112121E798C8F0053CCAC /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; };
 		E82112131E798C8F0053CCAC /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA951E79879A004E84C3 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E82112141E798C8F0053CCAC /* AWSAPIGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */; };
@@ -24,8 +24,8 @@
 		E825DAA41E7987CA004E84C3 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA31E7987CA004E84C3 /* AWSCognito.framework */; };
 		E825DAA51E7987CA004E84C3 /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA31E7987CA004E84C3 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E825DAA71E7987F6004E84C3 /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E825DAA61E7987F6004E84C3 /* AWSMobileHubHelper.framework */; };
-		E825DAAD1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */; };
-		E825DAAE1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */; };
+		E8A3DE2E1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3DE2B1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m */; };
+		E8A3DE2F1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3DE2D1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */; };
 		E8B5FFB61E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5FFB51E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift */; };
 		E8C0D18C1E809BE500C44414 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0D18B1E809BE500C44414 /* SwiftyJSON.swift */; };
 		E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB8FD1E6DE2C300CF56FD /* AppDelegate.swift */; };
@@ -42,7 +42,6 @@
 		E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */; };
 		E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */; };
 		E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */; };
-		E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */; };
 		E8F9B3FE1E7C2E47002CE043 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F9B3FD1E7C2E47002CE043 /* ForgotPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpExtension.swift; sourceTree = "<group>"; };
-		E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E80934131E840C3D0071722C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E80934151E84291A0071722C /* SignUpPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPhoneViewController.swift; sourceTree = "<group>"; };
 		E825DA911E79875F004E84C3 /* AWSAPIGateway.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSAPIGateway.framework; sourceTree = "<group>"; };
 		E825DA941E79879A004E84C3 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
 		E825DA951E79879A004E84C3 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCore.framework; sourceTree = "<group>"; };
@@ -77,11 +76,11 @@
 		E825DA981E79879A004E84C3 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSS3.framework; sourceTree = "<group>"; };
 		E825DAA31E7987CA004E84C3 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSCognito.framework; sourceTree = "<group>"; };
 		E825DAA61E7987F6004E84C3 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
-		E825DAA91E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_Empty.h; sourceTree = "<group>"; };
-		E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_Empty.m; sourceTree = "<group>"; };
-		E825DAAB1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.h; sourceTree = "<group>"; };
-		E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.m; sourceTree = "<group>"; };
 		E825DAAF1E798A69004E84C3 /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
+		E8A3DE2A1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_Empty.h; sourceTree = "<group>"; };
+		E8A3DE2B1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_Empty.m; sourceTree = "<group>"; };
+		E8A3DE2C1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.h; sourceTree = "<group>"; };
+		E8A3DE2D1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.m; sourceTree = "<group>"; };
 		E8B5FFB51E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		E8C0D18B1E809BE500C44414 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		E8EFB8FA1E6DE2C300CF56FD /* Project Supreme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Supreme.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +99,6 @@
 		E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewControllerExtensions.swift; path = UserPools/SignInViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E8EFB93A1E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolNewPasswordViewController.swift; path = UserPools/UserPoolNewPasswordViewController.swift; sourceTree = "<group>"; };
 		E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolSignUpConfirmationViewController.swift; path = UserPools/UserPoolSignUpConfirmationViewController.swift; sourceTree = "<group>"; };
-		E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolSignUpViewController.swift; path = UserPools/UserPoolSignUpViewController.swift; sourceTree = "<group>"; };
 		E8F9B3FD1E7C2E47002CE043 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,13 +123,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E80934121E840BD80071722C /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				E80934131E840C3D0071722C /* SignUpViewController.swift */,
+				E80934151E84291A0071722C /* SignUpPhoneViewController.swift */,
+				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
 		E89B34E21E7848A50044AA8A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				E825DAA91E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.h */,
-				E825DAAA1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m */,
-				E825DAAB1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */,
-				E825DAAC1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */,
+				E8A3DE2A1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.h */,
+				E8A3DE2B1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m */,
+				E8A3DE2C1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */,
+				E8A3DE2D1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -218,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				E8F9B3FA1E7C2CE4002CE043 /* SignIn */,
-				E8F9B3FB1E7C2D08002CE043 /* SignUp */,
+				E80934121E840BD80071722C /* SignUp */,
 				E8F9B3FC1E7C2D24002CE043 /* ForgotPass */,
 			);
 			name = SignIn/SignUp/ForgotPass;
@@ -231,17 +239,6 @@
 				E8EFB9371E6DE6E300CF56FD /* SignInViewControllerExtensions.swift */,
 			);
 			name = SignIn;
-			sourceTree = "<group>";
-		};
-		E8F9B3FB1E7C2D08002CE043 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				E809AB581E6FB3EC001A4287 /* SignUpViewController.swift */,
-				E809AB561E6FB3D6001A4287 /* SignUpExtension.swift */,
-				E8EFB93D1E6DE6E300CF56FD /* UserPoolSignUpViewController.swift */,
-				E8EFB93C1E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift */,
-			);
-			name = SignUp;
 			sourceTree = "<group>";
 		};
 		E8F9B3FC1E7C2D24002CE043 /* ForgotPass */ = {
@@ -348,19 +345,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F9B3FE1E7C2E47002CE043 /* ForgotPasswordViewController.swift in Sources */,
-				E825DAAD1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */,
 				E8EFB9001E6DE2C300CF56FD /* SignInViewController.swift in Sources */,
 				E8EFB92C1E6DE45700CF56FD /* AWSConfiguration.swift in Sources */,
 				E8EFB9411E6DE6E300CF56FD /* UserPoolNewPasswordViewController.swift in Sources */,
 				E8EFB92D1E6DE45700CF56FD /* AWSMobileClient.swift in Sources */,
+				E80934141E840C3D0071722C /* SignUpViewController.swift in Sources */,
 				E8B5FFB61E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift in Sources */,
-				E8EFB9441E6DE6E300CF56FD /* UserPoolSignUpViewController.swift in Sources */,
-				E809AB571E6FB3D6001A4287 /* SignUpExtension.swift in Sources */,
 				E8EFB9431E6DE6E300CF56FD /* UserPoolSignUpConfirmationViewController.swift in Sources */,
-				E809AB591E6FB3EC001A4287 /* SignUpViewController.swift in Sources */,
+				E8A3DE2F1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */,
 				E8C0D18C1E809BE500C44414 /* SwiftyJSON.swift in Sources */,
+				E80934161E84291A0071722C /* SignUpPhoneViewController.swift in Sources */,
+				E8A3DE2E1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */,
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
-				E825DAAE1E798A5D004E84C3 /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
 			);

@@ -75,6 +75,27 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
     func didCompleteStepWithError(_ error: Error?) {
         if let error = error as? NSError {
             DispatchQueue.main.async(execute: {
+                
+                if error.userInfo["__type"] as? String == "UserNotConfirmedException" {
+                    
+                    let ac = UIAlertController(title: "Hold up",
+                                               message: "You need you confirm your account before you can use it!",
+                                               preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Send SMS", style: .default, handler: { (action: UIAlertAction) in
+                        let userPoolSignUpConfirm = self.storyboard?.instantiateViewController(withIdentifier: "SignUpConfirmation") as! UserPoolSignUpConfirmationViewController
+                        userPoolSignUpConfirm.user = self.pool?.getUser(self.usernameTextField.text!.lowercased())
+                        userPoolSignUpConfirm.signInConfirmation()
+                        
+                        self.present(userPoolSignUpConfirm, animated: true)
+                    })
+                    
+                    ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    ac.addAction(okAction)
+                    self.present(ac, animated: true)
+                    
+                    return
+                }
+                
                 let ac = UIAlertController(title: error.userInfo["__type"] as? String,
                                            message: error.userInfo["message"] as? String,
                                            preferredStyle: .alert)

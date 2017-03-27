@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="74.212893553223395"/>
+            <point key="canvasLocation" x="33" y="71"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="KII-F3-F4G">
@@ -388,9 +388,6 @@ tied to the account:
                                 <rect key="frame" x="163" y="617" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="onCancel:" destination="4zb-2b-l6x" eventType="touchUpInside" id="XWv-xV-MVY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-Ep-aHv">
                                 <rect key="frame" x="16" y="181" width="343" height="36"/>
@@ -402,16 +399,18 @@ tied to the account:
                                     <color key="titleColor" red="0.69175382389999995" green="0.1240010075" blue="0.90194310899999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.55783634630000001" green="0.1268290128" blue="0.65422676280000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSignUp:" destination="4zb-2b-l6x" eventType="touchUpInside" id="GeH-eo-HOq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="xhw-Kn-g4t" id="dtm-am-b7Z"/>
-                        <outlet property="passwordTextField" destination="Usp-Mg-AQt" id="fEs-W0-sTZ"/>
-                        <outlet property="retypePasswordTextField" destination="AyY-3B-PL1" id="hFM-i1-5Pi"/>
-                        <outlet property="signUpButton" destination="yVi-Ep-aHv" id="lBY-zs-Dge"/>
-                        <outlet property="usernameTextField" destination="JmP-lf-3kn" id="XsK-66-3yO"/>
+                        <outlet property="emailTextField" destination="xhw-Kn-g4t" id="Riq-ye-Dh2"/>
+                        <outlet property="passwordTextField" destination="Usp-Mg-AQt" id="wMf-cJ-fi6"/>
+                        <outlet property="retypePasswordTextField" destination="AyY-3B-PL1" id="b3d-om-nlb"/>
+                        <outlet property="usernameTextField" destination="JmP-lf-3kn" id="Ckr-UQ-iOS"/>
                         <segue destination="4nq-oS-JHS" kind="show" identifier="PhoneVerifySegue" id="0wb-Z5-pLN"/>
                     </connections>
                 </viewController>
@@ -419,10 +418,10 @@ tied to the account:
             </objects>
             <point key="canvasLocation" x="33" y="729"/>
         </scene>
-        <!--User Pool Sign Up View Controller-->
+        <!--Sign Up Phone View Controller-->
         <scene sceneID="Hvj-bx-0gX">
             <objects>
-                <viewController storyboardIdentifier="PhoneVerify" id="4nq-oS-JHS" customClass="UserPoolSignUpViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhoneVerify" id="4nq-oS-JHS" customClass="SignUpPhoneViewController" customModule="Project_Supreme" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nvO-MT-RRh"/>
                         <viewControllerLayoutGuide type="bottom" id="L65-5Y-ysC"/>
@@ -470,14 +469,14 @@ tied to the account:
                                     <color key="titleShadowColor" red="0.55783634630000001" green="0.1268290128" blue="0.65422676280000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSendSMS:" destination="4nq-oS-JHS" eventType="touchUpInside" id="EZd-Kv-Vks"/>
+                                    <action selector="onSendSMS:" destination="4nq-oS-JHS" eventType="touchUpInside" id="n0d-r8-VY9"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="phone" destination="hF1-mm-2yn" id="iKm-FD-cPu"/>
+                        <outlet property="phoneTextField" destination="hF1-mm-2yn" id="P8N-co-vlg"/>
                         <segue destination="gHn-Ws-Ldg" kind="show" identifier="SignUpConfirmSegue" id="TE3-RH-LiQ"/>
                     </connections>
                 </viewController>

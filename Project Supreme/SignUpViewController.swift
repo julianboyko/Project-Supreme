@@ -2,7 +2,7 @@
 //  SignUpViewController.swift
 //  Project Supreme
 //
-//  Created by Julian Boyko on 2017-03-07.
+//  Created by Julian Boyko on 2017-03-23.
 //  Copyright © 2017 Supreme Apps. All rights reserved.
 //
 
@@ -11,47 +11,173 @@ import AWSMobileHubHelper
 
 class SignUpViewController: UIViewController {
     
-    // This class serves an important purpose. This class doesn't actually do any of the Signing Up of a new user. Instead this class uses the AWS Cognito Login features to check if the username that the new user wants to use for their account is already taken by an existing user. This class is closely tied/connected with the SignUpViewController extensions class to help with the login process. The SignUpViewControllerExtensions class also checks to make sure that the email the new user enters is valid & the passwords the new user enters match each other. 
+    // MARK: Properties
     
-    @IBOutlet weak var usernameTextField: UITextField! // textField where a new user enters his/her wanted username
-    @IBOutlet weak var passwordTextField: UITextField! // textField where a new user enters his/her password
-    @IBOutlet weak var retypePasswordTextField: UITextField! // textField where a new user re-enters his/her password
-    @IBOutlet weak var emailTextField: UITextField! // textField where a new user enters his/her email address
-    
-    @IBOutlet weak var signUpButton: UIButton! // uibutton that is clicked to start the sign up process
-    
-    var passwordAuthenticationCompletion: AWSTaskCompletionSource<AnyObject>? // used to attempt to sign in the user with the username provided by the new user. this is to see if the username is already taken before beggining the actual sign up process
-    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var retypePasswordTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        signUpButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside) // attaches a function in the "SignUpViewControllerExtensions" to attempt to Sign In the user with the credentials provided by the new user to see if the username the new user wants is already taken by an existing user
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // if the username is not already taken and there is no issues with the credentials provided by the new user, segue them onto the UserPoolSignUpViewController where the real sign up process begins
-        if let signUpPhoneVerify = segue.destination as? UserPoolSignUpViewController {
-            signUpPhoneVerify.userName = usernameTextField.text!.lowercased() // passes the username entered into the username variable on the next view controller
-            signUpPhoneVerify.email = emailTextField.text! // passes the email entered into the email variable on the next view controller
-            signUpPhoneVerify.password = passwordTextField.text! // passes the password entered into the passsword variable on the next view controller 
+        if let signUpPhoneVerify = segue.destination as? SignUpPhoneViewController {
+            signUpPhoneVerify.newUserInfo.username = usernameTextField.text!.lowercased()
+            signUpPhoneVerify.newUserInfo.password = passwordTextField.text!
+            signUpPhoneVerify.newUserInfo.email = emailTextField.text!
+        }
+    }
+
+    @IBAction func onSignUp(_ sender: Any) {
+        
+        let checkCredentials = validCredentials()
+        if checkCredentials != "valid" {
+            DispatchQueue.main.async(execute: {
+                let ac = UIAlertController(title: "Oops", message: checkCredentials, preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                self.present(ac, animated: true)
+            })
+            return
+        }
+        
+        getUser(username: usernameTextField.text!.lowercased())
+        
+    }
+    
+    func validCredentials() -> String {
+        var message = String()
+        
+        if usernameTextField.text!.isEmpty {
+            message = "You forgot to enter a username!"
+            return message
+        }
+        if passwordTextField.text!.isEmpty {
+            message = "You forgot to enter a password!"
+            return message
+        }
+        if emailTextField.text!.isEmpty {
+            message = "You forgot to enter a email!"
+            return message
+        }
+        if passwordTextField.text!.characters.count < 6 {
+            message = "Your password has to be at least 6 characters long!"
+            return message
+        }
+        if passwordTextField.text! != retypePasswordTextField.text! {
+            message = "Your password's do not match!"
+            return message
+        }
+        if !emailTextField.text!.contains("@") || !emailTextField.text!.contains(".") {
+            message = "You need to enter a valid email!"
+            return message
+        }
+        return "valid"
+    }
+    
+    
+    // MARK: APIGateway & Lambda Functions
+    
+    func getUser(username: String) {
+        
+        let httpMethodName = "GET"
+        let URLString = "/getuser"
+        let queryStringParameters = ["username":"\(username)"]
+        let headerParameters = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
+                                              urlString: URLString,
+                                              queryParameters: queryStringParameters,
+                                              headerParameters: headerParameters,
+                                              httpBody: nil)
+        
+        let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
+        
+        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+            if let error = task.error {
+                print ("Error occurred: \(error)")
+                return nil
+            }
+            
+            let result = task.result!
+            let responseString = String(data: result.responseData!, encoding: .utf8)
+            
+            if responseString!.contains("errorMessage") {
+                print ("Task timed out..")
+                DispatchQueue.main.async(execute: {
+                    let ac = UIAlertController(title: "Woah that's weird..", message: "Task timed out.. make sure you have a strong connection", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self.present(ac, animated: true)
+                    return
+                })
+                return nil
+            } else if responseString! == "null" {
+                print ("User does not exist")
+                DispatchQueue.main.async(execute: {
+                    self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
+                })
+                return nil
+            }
+            
+            do {
+                let object = try JSONSerialization.jsonObject(with: result.responseData!, options: .allowFragments)
+                let json = JSON(object: object)
+                if json["UserStatus"].string == "UNCONFIRMED" {
+                    self.terminateUser(username: username)
+                    DispatchQueue.main.async(execute: {
+                        self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
+                    })
+                } else {
+                    DispatchQueue.main.async(execute: {
+                        let ac = UIAlertController(title: "Sorry", message: "User already exists!", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                        self.present(ac, animated: true)
+                        return
+                    })
+                }
+            } catch {
+                print("Error parsing data")
+            }
+            
+            return nil
         }
     }
     
-    func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
-        // this function is called from the SignUpViewControllerExtensions after the signup uibutton is clicked. this begins the process of checking if the username is already taken by an existing user
-        AWSIdentityManager.default().login(signInProvider: signInProvider, completionHandler:
-            {(result: Any?, error: Error?) -> Void in
-                if error == nil {
-                    /* Handle successful login. */
-                }
-                print("Login with signin provider result = \(result), error = \(error)")
-        })
+    func terminateUser(username: String) {
+        let httpMethodName = "GET"
+        let URLString = "/deleteuser"
+        let queryStringParameters = ["username":"\(username)"]
+        let headerParameters = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
+                                              urlString: URLString,
+                                              queryParameters: queryStringParameters,
+                                              headerParameters: headerParameters,
+                                              httpBody: nil)
+        
+        let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
+        
+        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+            
+            if let error = task.error {
+                print ("Error occurred: \(error)")
+                return nil
+            }
+            
+            let result = task.result!
+            let responseString = String(data: result.responseData!, encoding: .utf8)
+            
+            print(responseString!)
+            
+            return nil
+        }
     }
-    
-    @IBAction func onCancel(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
+
 }
-
-
