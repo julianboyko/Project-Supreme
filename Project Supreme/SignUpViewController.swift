@@ -13,10 +13,10 @@ class SignUpViewController: UIViewController {
     
     // MARK: Properties
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var retypePasswordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField! // textField that holds the username the user enters to sign up
+    @IBOutlet weak var emailTextField: UITextField! // textField that holds the email the user enters to sign up
+    @IBOutlet weak var passwordTextField: UITextField! // textField that holds the password the user enters to sign up
+    @IBOutlet weak var retypePasswordTextField: UITextField! // textField that holds the retyped password the user enters to sign up
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +24,20 @@ class SignUpViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpPhoneVerify = segue.destination as? SignUpPhoneViewController {
-            signUpPhoneVerify.newUserInfo.username = usernameTextField.text!.lowercased()
-            signUpPhoneVerify.newUserInfo.password = passwordTextField.text!
-            signUpPhoneVerify.newUserInfo.email = emailTextField.text!
+            // transition to SignUpPhoneViewController and pass the username, password and email the user entered
+            let newUser = NewUser(username: usernameTextField.text!.lowercased(),
+                                  password: passwordTextField.text!,
+                                  email: emailTextField.text!)
+            signUpPhoneVerify.newUser = newUser
         }
     }
 
     @IBAction func onSignUp(_ sender: Any) {
         
         let checkCredentials = validCredentials()
-        if checkCredentials != "valid" {
-            DispatchQueue.main.async(execute: {
-                let ac = UIAlertController(title: "Oops", message: checkCredentials, preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                self.present(ac, animated: true)
-            })
+        
+        if checkCredentials.continue != true { // if the user didn't fill up each textField
+            self.supremeShowError(title: "Oops", message: checkCredentials.message!, action: nil)
             return
         }
         
@@ -46,58 +45,36 @@ class SignUpViewController: UIViewController {
         
     }
     
-    func validCredentials() -> String {
-        var message = String()
+    func validCredentials() -> (continue: Bool, message: String?) {
         
         if usernameTextField.text!.isEmpty {
-            message = "You forgot to enter a username!"
-            return message
+            return (false, "You forgot to enter a username!")
         }
         if passwordTextField.text!.isEmpty {
-            message = "You forgot to enter a password!"
-            return message
+            return (false, "You forgot to enter a password!")
         }
         if emailTextField.text!.isEmpty {
-            message = "You forgot to enter a email!"
-            return message
+            return (false, "You forgot to enter a email!")
         }
         if passwordTextField.text!.characters.count < 6 {
-            message = "Your password has to be at least 6 characters long!"
-            return message
+            return (false, "Your password has to be at least 6 characters long!")
         }
         if passwordTextField.text! != retypePasswordTextField.text! {
-            message = "Your password's do not match!"
-            return message
+            return (false, "Your password's do not match!")
         }
         if !emailTextField.text!.contains("@") || !emailTextField.text!.contains(".") {
-            message = "You need to enter a valid email!"
-            return message
+            return (false, "You need to enter a valid email!")
         }
-        return "valid"
+        return (true, nil)
     }
     
     
-    // MARK: APIGateway & Lambda Functions
-    
     func getUser(username: String) {
-        
-        let httpMethodName = "GET"
-        let URLString = "/getuser"
-        let queryStringParameters = ["username":"\(username)"]
-        let headerParameters = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
-                                              urlString: URLString,
-                                              queryParameters: queryStringParameters,
-                                              headerParameters: headerParameters,
-                                              httpBody: nil)
+        // check if the user is taken or unconfirmed
         
         let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
         
-        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+        invocationClient.supremeInvoke(lambdaFunction: .getUser(username: username)).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
             if let error = task.error {
                 print ("Error occurred: \(error)")
                 return nil
@@ -107,77 +84,33 @@ class SignUpViewController: UIViewController {
             let responseString = String(data: result.responseData!, encoding: .utf8)
             
             if responseString!.contains("errorMessage") {
-                print ("Task timed out..")
-                DispatchQueue.main.async(execute: {
-                    let ac = UIAlertController(title: "Woah that's weird..", message: "Task timed out.. make sure you have a strong connection", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                    self.present(ac, animated: true)
-                    return
-                })
-                return nil
-            } else if responseString! == "null" {
-                print ("User does not exist")
-                DispatchQueue.main.async(execute: {
-                    self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
-                })
-                return nil
-            }
-            
-            do {
-                let object = try JSONSerialization.jsonObject(with: result.responseData!, options: .allowFragments)
-                let json = JSON(object: object)
-                if json["UserStatus"].string == "UNCONFIRMED" {
-                    self.terminateUser(username: username)
-                    DispatchQueue.main.async(execute: {
-                        self.performSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self)
-                    })
-                } else {
-                    DispatchQueue.main.async(execute: {
-                        let ac = UIAlertController(title: "Sorry", message: "User already exists!", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                        self.present(ac, animated: true)
-                        return
-                    })
-                }
-            } catch {
-                print("Error parsing data")
+                // if lambda function has been running for it's entire "Timeout" time (task times out)
+                self.supremeShowError(title: "Woah that's weird...", message: "Task timed out... make sure you have a strong connection", action: nil)
+                
+            } else if responseString! == "null" || self.userIsUnconfirmed(data: result.responseData!) {
+                // if the user isn't already taken, or the user is unconfirmed
+                self.supremePerformSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self) // continue sign up process
+            } else {
+                // user is taken and is confirmed
+                self.supremeShowError(title: "Sorry", message: "User already exists!", action: nil)
             }
             
             return nil
         }
     }
     
-    func terminateUser(username: String) {
-        let httpMethodName = "GET"
-        let URLString = "/deleteuser"
-        let queryStringParameters = ["username":"\(username)"]
-        let headerParameters = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
-                                              urlString: URLString,
-                                              queryParameters: queryStringParameters,
-                                              headerParameters: headerParameters,
-                                              httpBody: nil)
-        
-        let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
-        
-        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
-            
-            if let error = task.error {
-                print ("Error occurred: \(error)")
-                return nil
+    func userIsUnconfirmed(data: Data) -> Bool {
+        // read the result.responseData to see if the user is unconfirmed, by reading it's JSON
+        do {
+            let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            let json = JSON(object: object)
+            if json["UserStatus"].string == "UNCONFIRMED" {
+                return true
             }
-            
-            let result = task.result!
-            let responseString = String(data: result.responseData!, encoding: .utf8)
-            
-            print(responseString!)
-            
-            return nil
+        } catch {
+            print("Error parsing data")
         }
+        return false
     }
 
 }

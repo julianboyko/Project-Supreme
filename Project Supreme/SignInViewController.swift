@@ -35,25 +35,16 @@ class SignInViewController: UIViewController {
         didSignInObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AWSIdentityManagerDidSignIn, object: AWSIdentityManager.default(), queue: OperationQueue.main, using: {(note: Notification) -> Void in
             // perform successful login actions here
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpConfirmation") as! UserPoolSignUpConfirmationViewController
-            
-            //let vc = self.storyboard?.instantiateViewController(withIdentifier: "test") as! TestViewController
             self.present(vc, animated: true)
         })
-        
-        loginButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the login button
-        createAccountButton.addTarget(self, action: Selector(("handleUserPoolSignUp")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the create account button
-        forgotPassword.addTarget(self, action: Selector(("handleUserPoolForgotPassword")), for: .touchUpInside) // attaches a function in the "SignInViewControllerExtensions" to the forgot password button
+        loginButton.addTarget(self, action: Selector(("handleCustomSignIn")), for: .touchUpInside)
+        createAccountButton.addTarget(self, action: Selector(("handleUserPoolSignUp")), for: .touchUpInside)
+        forgotPassword.addTarget(self, action: Selector(("handleUserPoolForgotPassword")), for: .touchUpInside)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(didSignInObserver) // if the user isn't logged in, remove the observer
     }
-    
-    // gets the users identity.. I don't think I use this anywhere..
-    func getUserIdentity() -> String {
-        return AWSIdentityManager.default().identityId!
-    }
-    
     
     func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
         AWSIdentityManager.default().login(signInProvider: signInProvider, completionHandler:

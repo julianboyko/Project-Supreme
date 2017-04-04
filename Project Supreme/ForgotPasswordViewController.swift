@@ -27,47 +27,22 @@ class ForgotPasswordViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let forgotPasswordVerifyPhoneNumberVC = segue.destination as? ForgotPasswordVerifyPhoneNumberViewController {
-            forgotPasswordVerifyPhoneNumberVC.phoneNumber = self.userPhoneNumber // passes the phoneNumber that was aquired from the user that was entered in the textField to the userPhoneNumber variable on the ForgotPasswordVerifyPhoneNumberViewController
-            forgotPasswordVerifyPhoneNumberVC.userName = self.userNameTextField.text!.lowercased() // passes the userName entered in the userNameTextField to the userName variable on the ForgotPasswordVerifyPhoneNumberViewController. The userNameTextField is put to lowercased because all users in the UserPool are lowercased
+            forgotPasswordVerifyPhoneNumberVC.phoneNumber = self.userPhoneNumber
+            forgotPasswordVerifyPhoneNumberVC.userName = self.userNameTextField.text!.lowercased()
         }
     }
     
     @IBAction func onForgotPassword(_ sender: Any) {
-        // this function is ran when the ForgotPassword button is clicked
         
-        guard let userName = self.userNameTextField.text, !userName.isEmpty else { // if the user never entered a username, tell the user that
-            let ac = UIAlertController(title: "Hold up!", message: "Please enter your username!", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            present(ac, animated: true)
+        guard let userName = self.userNameTextField.text, !userName.isEmpty else {
+            self.supremeShowError(title: "Hold up", message: "Please enter your username!", action: nil)
             return
         }
         
-        // attempt to get the user attributes for the user entered in the textField 
-        
-        let httpMethodName = "GET" // the lambda function receives a "GET" method to aquire the user attributes
-        let URLString = "/getuser" // the url string on the lambda function is /getuser
-        let queryStringParameters = ["username":"\(userNameTextField.text!.lowercased())"] // the paramaters for the lambda function is the username of the user, so this gives the paramater the username entered in the userNameTextField and sets it to lowercased.. it's lowercased because.. you know why 
-        
-        // the lamba function accepts information as json and returns information as json
-        let headerParameters = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        // Construct the request object
-        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
-                                              urlString: URLString,
-                                              queryParameters: queryStringParameters,
-                                              headerParameters: headerParameters,
-                                              httpBody: nil)
-        
-        // Fetch the Cloud Logic client to be used for invocation
-        // Change the `AWSAPI_XE21FG_MyCloudLogicClient` class name to the client class for your generated SDK
+        // attempt to get the user attributes for the user entered in the textField
         let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
         
-        // run the lambda function with the apiRequest
-        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
-            //guard let strongSelf = self else { return nil }
+        invocationClient.supremeInvoke(lambdaFunction: .getUser(username: userNameTextField.text!.lowercased())).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
             
             if let error = task.error {
                 print("Error occurred: \(error)")
@@ -79,36 +54,29 @@ class ForgotPasswordViewController: UIViewController {
             let result = task.result!
             let responseString = String(data: result.responseData!, encoding: .utf8) // put the result's responseData in a String to do some error checks
             
-            // check if the user does not exist. (if the responseString comes out as "null" that means that the lambda function couldn't find the user associated with the username entered.. meaning it doesn't exist.)
+            // user does not exist
             if responseString! == "null" {
-                DispatchQueue.main.async(execute: {
-                    let ac = UIAlertController(title: "Oops", message: "The user you entered does not exist!", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                    self.present(ac, animated: true)
-                })
+                self.supremeShowError(title: "Oops", message: "The user you entered does not exist!", action: nil)
                 return nil
             }
             
-            // check if the responseString contains the text "errorMessage" because when the lambda function time runs for longer than the Timeout time set in the Lambda Console, the function times out and stops running.
+            // if lambda function has been running for it's entire "Timeout" time (task times out)
             if responseString!.contains("errorMessage") {
                 print("Task timed out.. took longer than 10 seconds.")
-                // send an error back to the user. this means that the user can't connect to the lambda function within the 10 seconds. maybe their connection is off?
                 return nil
             }
             
-            // if the user does exist and the lambda function didn't time out or have any errors, run the following:
+            // get the phone number of the user entered
             do {
-                let object = try JSONSerialization.jsonObject(with: result.responseData!, options: .allowFragments) // set the responseData to a jsonObject
-                if let dictionary = object as? [String: AnyObject] { // set the object to a dictionary with the type [String: AnyObject]
-                    self.readJSONObject(object: dictionary) // run the readJSONObject function and pass in the dictionary made through the responseData
+                let object = try JSONSerialization.jsonObject(with: result.responseData!, options: .allowFragments)
+                if let dictionary = object as? [String: AnyObject] {
+                    self.readJSONObject(object: dictionary)
                     
                     for case let attr in self.userAttributes where JSON(object: attr)["Name"].string == "phone_number" {
                         self.userPhoneNumber = JSON(object: attr)["Value"].string!
                     }
                     
-                    DispatchQueue.main.async(execute: {
-                        self.performSegue(withIdentifier: "VerifyPhoneNumber", sender: sender) // perform a segue onto the next view controller which is the "ForgotPasswordVerifyPhoneNumberViewController" on the main thread
-                    })
+                    self.supremePerformSegue(withIdentifier: "VerifyPhoneNumber", sender: sender)
                 }
                 
             } catch {

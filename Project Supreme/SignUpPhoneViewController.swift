@@ -19,12 +19,12 @@ import AWSCognitoIdentityProvider
 
 class SignUpPhoneViewController: UIViewController {
     
-    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField! // textField where user enters their phone number
     
-    var newUserInfo: (username: String?, password: String?, email: String?)
     var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
-
+    var newUser: NewUser! // Holds user's username, password, & email values
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
@@ -33,103 +33,81 @@ class SignUpPhoneViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let signUpConfirmationViewController = segue.destination as? UserPoolSignUpConfirmationViewController {
             signUpConfirmationViewController.sentTo = self.sentTo
-            signUpConfirmationViewController.user = self.pool?.getUser(self.newUserInfo.username!)
-            signUpConfirmationViewController.newUserInfo = self.newUserInfo
+            signUpConfirmationViewController.user = self.pool?.getUser(self.newUser.username)
+            signUpConfirmationViewController.newUser = self.newUser
         }
     }
-
+    
     @IBAction func onSendSMS(_ sender: Any) {
         var attributes = [AWSCognitoIdentityUserAttributeType]() // array list of User Attribute Type's
         
-        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-        
-        if let phoneValue = self.phoneTextField.text, !phoneValue.isEmpty { // adding the phone_number attribute to the user's phone number user attribute
+        // {
+        // adding phone number and email attributes to the user
+        if let phoneValue = self.phoneTextField.text, !phoneValue.isEmpty {
             let phone = AWSCognitoIdentityUserAttributeType()
             phone?.name = "phone_number"
             phone?.value = phoneValue
             attributes.append(phone!)
         }
         
-        if let emailValue = self.newUserInfo.email, !emailValue.isEmpty { // adding the email attribute to the user's email user attribute
-            let email = AWSCognitoIdentityUserAttributeType()
-            email?.name = "email"
-            email?.value = emailValue
-            attributes.append(email!)
-        }
+        let email = AWSCognitoIdentityUserAttributeType()
+        email?.name = "email"
+        email?.value = newUser.email
+        attributes.append(email!)
+        // }
         
         //sign up the user
-        self.pool?.signUp(newUserInfo.username!, password: newUserInfo.password!, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
+        self.pool?.signUp(newUser.username, password: newUser.password, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
             guard let strongSelf = self else { return nil }
-            DispatchQueue.main.async(execute: {
-                if let error = task.error as? NSError {
+            
+            if let error = task.error as? NSError {
+                
+                switch (error.code) {
+                case awsErrorType.invalidEmailAddress:
+                    // email entered in the previous view controller is invalid
+                    let invalidEmailAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (action: UIAlertAction) in
+                        strongSelf.dismiss(animated: true)
+                    })
+                    strongSelf.supremeShowError(title: "Oops", message: "Email is invalid", action: invalidEmailAction)
                     
-                    let errorMessage = error.userInfo["message"] as! String
-                    switch (errorMessage) {
-                    case "Invalid email address format.":
-                        let invalidEmail = UIAlertController(title: "Oops", message: "Email is invalid", preferredStyle: .alert)
-                        let invalidEmailAction = UIAlertAction(title: "Ok", style: .cancel, handler: { (action: UIAlertAction) in
-                            strongSelf.dismiss(animated: true)
-                        })
-                        invalidEmail.addAction(invalidEmailAction)
-                        strongSelf.present(invalidEmail, animated: true)
-                    case "User already exists":
-                        
-                        let httpMethodName = "GET"
-                        let URLString = "/deleteuser"
-                        let queryStringParameters = ["username":"\(strongSelf.newUserInfo.username!)"]
-                        let headerParameters = [
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        ]
-                        
-                        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
-                                                              urlString: URLString,
-                                                              queryParameters: queryStringParameters,
-                                                              headerParameters: headerParameters,
-                                                              httpBody: nil)
-                        
-                        let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
-                        
-                        invocationClient.invoke(apiRequest).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
-                            
-                            if let error = task.error {
-                                print ("Error occurred: \(error)")
-                                return nil
-                            }
-                            
-                            strongSelf.onSendSMS(sender)
+                case awsErrorType.userAlreadyExists:
+                    // user already exists but is unconfirmed
+                    let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
+                    
+                    // delete the unconfirmed user
+                    invocationClient.supremeInvoke(lambdaFunction: .deleteUser(username: strongSelf.newUser.username)).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+                        if let error = task.error {
+                            print ("Error occurred: \(error)")
                             return nil
                         }
                         
-                    default:
-                        ac.title = error.userInfo["__type"] as? String
-                        ac.message = error.userInfo["message"] as? String
-                        strongSelf.present(ac, animated: true)
+                        // after deleting the unconfirmed user, restart this method to attempt the sign up process again
+                        strongSelf.onSendSMS(sender)
+                        return nil
                     }
                     
-                    return
+                default:
+                    strongSelf.supremeShowError(title: String(describing: error.userInfo["__type"]!), message: String(describing: error.userInfo["message"]!), action: nil)
                 }
-                
-                // if the sign up is successful
-                if let result = task.result as AWSCognitoIdentityUserPoolSignUpResponse! {
-                    // handle the case where user has to confirm his identity via email / SMS
-                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) { // checks if the current user's confirmed status is unconfirmed
-                        strongSelf.sentTo = result.codeDeliveryDetails?.destination // sets the sentTo variable to the codeDeliveryDetails destination
-                        strongSelf.performSegue(withIdentifier: "SignUpConfirmSegue", sender:sender) // segue the user onto the UserPoolSignUpConfirmationViewController
-                    } else {
-                        // if the user is already confirmed then tell them the registration is complete, and that it was successful
-                        ac.title = "Registration Complete"
-                        ac.message = "Registration was successful."
-                        strongSelf.present(ac, animated: true)
+            }
+            
+            // if the sign up is successful
+            if let result = task.result as AWSCognitoIdentityUserPoolSignUpResponse! {
+                // handle the case where user has to confirm his identity via email / SMS
+                if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) { // checks if the current user's confirmed status is unconfirmed
+                    strongSelf.sentTo = result.codeDeliveryDetails?.destination // sets the sentTo variable to the codeDeliveryDetails destination
+                    strongSelf.supremePerformSegue(withIdentifier: "SignUpConfirmSegue", sender: sender) // segue the user onto the UserPoolSignUpConfirmationViewController
+                } else {
+                    // if the user is already confirmed then tell them the registration is complete, and that it was successful
+                    strongSelf.supremeShowError(title: "Registration Complete", message: "Registration was successful.", action: nil)
+                    DispatchQueue.main.async {
                         _ = strongSelf.navigationController?.popToRootViewController(animated: true)
                     }
                 }
-                
-            })
+            }
             return nil
         }
-
+        
     }
     
 }

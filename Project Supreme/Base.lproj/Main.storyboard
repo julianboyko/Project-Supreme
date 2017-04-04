@@ -329,7 +329,7 @@ tied to the account:
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Resend Confirmation Code"/>
                                 <connections>
-                                    <action selector="onResendConfirmationCode:" destination="gHn-Ws-Ldg" eventType="touchUpInside" id="cry-OR-mLc"/>
+                                    <action selector="onSendConfirmationCode:" destination="gHn-Ws-Ldg" eventType="touchUpInside" id="Omj-Ei-b7n"/>
                                 </connections>
                             </button>
                         </subviews>
