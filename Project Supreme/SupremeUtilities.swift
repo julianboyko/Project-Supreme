@@ -13,6 +13,9 @@ import UIKit
 // MARK: Constants
 
 struct awsErrorType {
+    
+    static let timedOut = "errorMessage"
+    
     // error codes matched to their corresponding errors
     static let unconfirmedUser = 26
     static let userAlreadyExists = 28
@@ -92,4 +95,10 @@ extension AWSAPI_2FAM04WBZ9_LambdaGateClient {
         return self.invoke(apiRequest)
     }
     
+}
+
+// MARK: Operator Overloading
+
+func ~=(lhs: String, rhs: String) -> Bool {
+    if lhs.contains(rhs) { return true } else { return false }
 }

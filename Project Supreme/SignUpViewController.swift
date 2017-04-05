@@ -82,8 +82,7 @@ class SignUpViewController: UIViewController {
             
             let result = task.result!
             let responseString = String(data: result.responseData!, encoding: .utf8)
-            
-            if responseString!.contains("errorMessage") {
+            if responseString! ~= awsErrorType.timedOut {
                 // if lambda function has been running for it's entire "Timeout" time (task times out)
                 self.supremeShowError(title: "Woah that's weird...", message: "Task timed out... make sure you have a strong connection", action: nil)
                 

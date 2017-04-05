@@ -86,7 +86,7 @@ class SignUpPhoneViewController: UIViewController {
                         return nil
                     }
                     
-                default:
+                default: 
                     strongSelf.supremeShowError(title: String(describing: error.userInfo["__type"]!), message: String(describing: error.userInfo["message"]!), action: nil)
                 }
             }

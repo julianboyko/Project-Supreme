@@ -61,8 +61,8 @@ class ForgotPasswordViewController: UIViewController {
             }
             
             // if lambda function has been running for it's entire "Timeout" time (task times out)
-            if responseString!.contains("errorMessage") {
-                print("Task timed out.. took longer than 10 seconds.")
+            if responseString! ~= awsErrorType.timedOut {
+                self.supremeShowError(title: "Woah that's weird...", message: "Task timed out... make sure you have a strong connection", action: nil)
                 return nil
             }
             
