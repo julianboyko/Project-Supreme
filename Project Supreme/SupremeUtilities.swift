@@ -14,6 +14,7 @@ import UIKit
 
 struct awsErrorType {
     
+    static let test = "Testing"
     static let timedOut = "errorMessage"
     
     // error codes matched to their corresponding errors
