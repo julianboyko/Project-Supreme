@@ -14,6 +14,7 @@ import UIKit
 
 struct awsErrorType {
     
+    static let testingPull = "Testing the pull"
     static let timedOut = "errorMessage"
     
     // error codes matched to their corresponding errors
