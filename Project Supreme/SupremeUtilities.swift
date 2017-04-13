@@ -57,48 +57,21 @@ extension UIViewController {
     
 }
 
-extension AWSAPI_2FAM04WBZ9_LambdaGateClient {
-    // extension to run specified lambda functions without entering all their details each time (quicker)
-    
-    enum LambdaFunction {
-        case getUser(username: String)
-        case deleteUser(username: String)
-    }
-    
-    func supremeInvoke(lambdaFunction: LambdaFunction) -> AWSTask<AWSAPIGatewayResponse> {
-        
-        let httpMethodName = "GET"
-        var URLString = String()
-        var queryStringParameters = [String : String]()
-        let headerParameters = [
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        ]
-        
-        switch lambdaFunction {
-        case .getUser(let username):
-            URLString = "/getuser"
-            queryStringParameters = ["username":"\(username)"]
-            
-        case .deleteUser(let username):
-            URLString = "/deleteuser"
-            queryStringParameters = ["username":"\(username)"]
-            
-        }
-        
-        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
-                                          urlString: URLString,
-                                          queryParameters: queryStringParameters,
-                                          headerParameters: headerParameters,
-                                          httpBody: nil)
-        
-        return self.invoke(apiRequest)
-    }
-    
-}
-
 // MARK: Operator Overloading
 
 func ~=(lhs: String, rhs: String) -> Bool {
     if lhs.contains(rhs) { return true } else { return false }
 }
+
+//////////////////////////////////////////////
+// function composition
+precedencegroup CompositionPrecedence {
+    associativity: left
+}
+
+infix operator >>>: CompositionPrecedence
+
+func >>> <T, U, V>(lhs: @escaping (T) -> U, rhs: @escaping (U) -> V) -> (T) -> V {
+    return { rhs(lhs($0)) }
+}
+//////////////////////////////////////////////

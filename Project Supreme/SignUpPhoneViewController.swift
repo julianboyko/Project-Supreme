@@ -72,19 +72,8 @@ class SignUpPhoneViewController: UIViewController {
                     
                 case awsErrorType.userAlreadyExists:
                     // user already exists but is unconfirmed
-                    let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
-                    
-                    // delete the unconfirmed user
-                    invocationClient.supremeInvoke(lambdaFunction: .deleteUser(username: strongSelf.newUser.username)).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
-                        if let error = task.error {
-                            print ("Error occurred: \(error)")
-                            return nil
-                        }
-                        
-                        // after deleting the unconfirmed user, restart this method to attempt the sign up process again
-                        strongSelf.onSendSMS(sender)
-                        return nil
-                    }
+                    _ = lambdaFunction(function: .deleteUser(username: strongSelf.newUser.username))
+                    strongSelf.onSendSMS(sender)
                     
                 default: 
                     strongSelf.supremeShowError(title: String(describing: error.userInfo["__type"]!), message: String(describing: error.userInfo["message"]!), action: nil)

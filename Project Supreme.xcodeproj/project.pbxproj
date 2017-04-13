@@ -27,6 +27,7 @@
 		E8548D0C1E91CD2100C8205E /* NewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8548D0B1E91CD2100C8205E /* NewUser.swift */; };
 		E8A3DE2E1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3DE2B1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m */; };
 		E8A3DE2F1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A3DE2D1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */; };
+		E8A801E61E9EBD1D00FF19B6 /* LambdaFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A801E51E9EBD1D00FF19B6 /* LambdaFunctions.swift */; };
 		E8B5FFB61E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5FFB51E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift */; };
 		E8C0D18C1E809BE500C44414 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0D18B1E809BE500C44414 /* SwiftyJSON.swift */; };
 		E8EC6BEB1E8D93280096B601 /* SupremeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC6BEA1E8D93280096B601 /* SupremeUtilities.swift */; };
@@ -84,6 +85,7 @@
 		E8A3DE2B1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_Empty.m; sourceTree = "<group>"; };
 		E8A3DE2C1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.h; sourceTree = "<group>"; };
 		E8A3DE2D1E8201360051B88B /* AWSAPI_2FAM04WBZ9_LambdaGateClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_2FAM04WBZ9_LambdaGateClient.m; sourceTree = "<group>"; };
+		E8A801E51E9EBD1D00FF19B6 /* LambdaFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LambdaFunctions.swift; sourceTree = "<group>"; };
 		E8B5FFB51E7C388900FEB60B /* ForgotPasswordVerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		E8C0D18B1E809BE500C44414 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		E8EC6BEA1E8D93280096B601 /* SupremeUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupremeUtilities.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		E8EFB9351E6DE64E00CF56FD /* SignIn/SignUp/ForgotPass */ = {
 			isa = PBXGroup;
 			children = (
+				E8A801E51E9EBD1D00FF19B6 /* LambdaFunctions.swift */,
 				E8EC6BEA1E8D93280096B601 /* SupremeUtilities.swift */,
 				E8F9B3FA1E7C2CE4002CE043 /* SignIn */,
 				E80934121E840BD80071722C /* SignUp */,
@@ -364,6 +367,7 @@
 				E8C0D18C1E809BE500C44414 /* SwiftyJSON.swift in Sources */,
 				E80934161E84291A0071722C /* SignUpPhoneViewController.swift in Sources */,
 				E8A3DE2E1E8201360051B88B /* AWSAPI_2FAM04WBZ9_Empty.m in Sources */,
+				E8A801E61E9EBD1D00FF19B6 /* LambdaFunctions.swift in Sources */,
 				E8EFB8FE1E6DE2C300CF56FD /* AppDelegate.swift in Sources */,
 				E8EFB93E1E6DE6E300CF56FD /* SignInViewControllerExtensions.swift in Sources */,
 				E8EFB92F1E6DE45700CF56FD /* Events.swift in Sources */,
