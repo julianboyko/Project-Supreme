@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func onSignUp(_ sender: Any) {
-        
+
         let checkCredentials = validCredentials()
         
         if checkCredentials.continue != true { // if the user didn't fill up each textField
@@ -41,7 +41,19 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        getUser(username: usernameTextField.text!.lowercased())
+        let getUser = lambdaFunction >>> lambdaFunctionGetResponse
+        
+        DispatchQueue.global(qos: .background).async {
+            let response = getUser(.getUser(username: self.usernameTextField.text!.lowercased()))
+            switch response {
+            case .timedOut:
+                self.supremeShowError(title: "Woah that's weird", message: "Task timed out... try again in a minute", action: nil)
+            case .userAlreadyExists:
+                self.supremeShowError(title: "Sorry", message: "User already exists", action: nil)
+            default:
+                self.supremePerformSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self) // continue sign up process
+            }
+        }
         
     }
     
@@ -66,50 +78,6 @@ class SignUpViewController: UIViewController {
             return (false, "You need to enter a valid email!")
         }
         return (true, nil)
-    }
-    
-    
-    func getUser(username: String) {
-        // check if the user is taken or unconfirmed
-        
-        let invocationClient = AWSAPI_2FAM04WBZ9_LambdaGateClient(forKey: AWSCloudLogicDefaultConfigurationKey)
-        
-        invocationClient.supremeInvoke(lambdaFunction: .getUser(username: username)).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
-            if let error = task.error {
-                print ("Error occurred: \(error)")
-                return nil
-            }
-            
-            let result = task.result!
-            let responseString = String(data: result.responseData!, encoding: .utf8)
-            if responseString! ~= awsErrorType.timedOut {
-                // if lambda function has been running for it's entire "Timeout" time (task times out)
-                self.supremeShowError(title: "Woah that's weird...", message: "Task timed out... make sure you have a strong connection", action: nil)
-                
-            } else if responseString! == "null" || self.userIsUnconfirmed(data: result.responseData!) {
-                // if the user isn't already taken, or the user is unconfirmed
-                self.supremePerformSegue(withIdentifier: "PhoneVerifySegue", sender: SignUpViewController.self) // continue sign up process
-            } else {
-                // user is taken and is confirmed
-                self.supremeShowError(title: "Sorry", message: "User already exists!", action: nil)
-            }
-            
-            return nil
-        }
-    }
-    
-    func userIsUnconfirmed(data: Data) -> Bool {
-        // read the result.responseData to see if the user is unconfirmed, by reading it's JSON
-        do {
-            let object = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            let json = JSON(object: object)
-            if json["UserStatus"].string == "UNCONFIRMED" {
-                return true
-            }
-        } catch {
-            print("Error parsing data")
-        }
-        return false
     }
 
 }
